@@ -63,6 +63,19 @@ at_detector = Detector(families='tag36h11',
                    decode_sharpening=0.25,
                    debug=0)
 
+fly = False
+
+# feature tracking 
+# Parameters for lucas kanade optical flow
+lk_params = dict( winSize = (45, 45),
+                  maxLevel = 2,
+                  criteria = (cv2.TERM_CRITERIA_EPS | cv2.TERM_CRITERIA_COUNT, 10, 0.03) )
+
+u1 = np.zeros((1, 1, 2))
+u2 = np.zeros((1, 1, 2))
+old_gray = None
+new_gray = None
+
 def get_point_below_tag(T_camera_tag, meters_below, K):
     """
     given a 4x4 transform FROM the tag TO the camera,
@@ -129,12 +142,29 @@ def detect_tags(img, target_point_dist = None, visualize = False):
             point_below = get_point_below_tag(T_camera_tag, meters_below=0.5, K=K)
             if visualize:
                 cv2.line(img, point_below, (cX, cY), (255, 0, 0) , 3)
+                u2 = get_flow_point(point_below, new_gray)
+                cv
+                cv2.circle(img, u2, 5, (255, 0, 0), 2)
             target = {'position': T_camera_tag, 'pixel_coords': point_below}
         tag_info[str(tag.tag_id)] = {'tag': tag, 'target': target}
     if visualize:
         cv2.imshow("drone cam", img)
         key = cv2.waitKey(50)
     return tag_info
+
+def get_flow_point(point_below, new_gray):
+    old_gray = new_gray
+    print("old gray")
+    new_gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+    print("new gray")
+    if old_gray is not None: 
+        u1 = np.reshape(np.array([point_below[0], point_below[1]],dtype="float32"), (1,1,2))
+        print("u1")
+        u2, _, _ = cv2.calcOpticalFlowPyrLK(old_gray, new_gray, u1, None, **lk_params)
+        print("u2")
+        px = u2[0][0][0]
+        py = u2[0][0][1]
+        return (px, py)
 
 def get_z_control(target, observed, gain):
     return int(gain * (observed - target))
@@ -156,7 +186,8 @@ def stop_drone():
 
 # send takeoff command
 # NOTE THAT CTRL-C SHOULD MAKE YOUR DRONE LAND AND STOP THE PROPS
-tello.takeoff()
+if fly:
+    tello.takeoff()
 
 while True:
     # GET THE IMAGE FROM TELLO
@@ -182,7 +213,8 @@ while True:
         yaw_velocity = 0
 
         # send control action to drone
-        send_velocity_command(left_right_vel, forward_vel, 
+        if fly: 
+            send_velocity_command(left_right_vel, forward_vel, 
                           up_down_vel, yaw_velocity)
 
     else:
