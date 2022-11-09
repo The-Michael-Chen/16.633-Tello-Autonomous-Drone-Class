@@ -75,6 +75,7 @@ u1 = np.zeros((1, 1, 2))
 u2 = np.zeros((1, 1, 2))
 old_gray = None
 new_gray = None
+point_below = None
 
 def get_point_below_tag(T_camera_tag, meters_below, K):
     """
@@ -110,6 +111,7 @@ def detect_tags(img, target_point_dist = None, visualize = False):
     print("number of tags detected:", len(tags))
     tag_info = {}
     # loop over the AprilTag detection results
+    global point_below
     for tag in tags:
         target = None
     	# extract the bounding box (x, y)-coordinates for the AprilTag
@@ -142,28 +144,29 @@ def detect_tags(img, target_point_dist = None, visualize = False):
             point_below = get_point_below_tag(T_camera_tag, meters_below=0.5, K=K)
             if visualize:
                 cv2.line(img, point_below, (cX, cY), (255, 0, 0) , 3)
-                u2 = get_flow_point(point_below, new_gray)
-                cv
-                cv2.circle(img, u2, 5, (255, 0, 0), 2)
             target = {'position': T_camera_tag, 'pixel_coords': point_below}
         tag_info[str(tag.tag_id)] = {'tag': tag, 'target': target}
     if visualize:
+        if point_below != None:
+            u2 = get_flow_point(point_below)
+            cv2.circle(img, u2, 10, (0, 255, 0), 2)
         cv2.imshow("drone cam", img)
         key = cv2.waitKey(50)
     return tag_info
 
-def get_flow_point(point_below, new_gray):
+def get_flow_point(point_below):
+    global new_gray
+    global old_gray
     old_gray = new_gray
     print("old gray")
     new_gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-    print("new gray")
     if old_gray is not None: 
         u1 = np.reshape(np.array([point_below[0], point_below[1]],dtype="float32"), (1,1,2))
-        print("u1")
         u2, _, _ = cv2.calcOpticalFlowPyrLK(old_gray, new_gray, u1, None, **lk_params)
-        print("u2")
-        px = u2[0][0][0]
-        py = u2[0][0][1]
+        print("firstU2")
+        print(u2)
+        px = int(u2[0][0][0])
+        py = int(u2[0][0][1])
         return (px, py)
 
 def get_z_control(target, observed, gain):
