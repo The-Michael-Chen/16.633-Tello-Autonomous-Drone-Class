@@ -46,12 +46,13 @@ target_dist = 0.0 # desired distance from tag
 # remember left-right and up-down error is larger
 # than forward-back error since the first two are
 # in pixels and not meters!
-P_z = 10 # forward-back gain
-P_x = 0.1 # left-right gain
-P_y = 0.2 # up-down gain
+P_z = 11
+ # forward-back gain
+P_x = 0.12 # left-right gain
+P_y = 0.27 # up-down gain
 
-target_tag = "13" # tag to target
-target_tags = ["13", "17", "7", "1"]
+target_tag = "7" # tag to target
+target_tags = ["7", "0", "19", "17"]
 tag_ind = 0
 
 
@@ -143,6 +144,7 @@ def detect_tags(img, target_point_dist = None, visualize = False):
     # loop over the AprilTag detection results
     global point_below
     global flow_point
+    global prev_flow_point
     for tag in tags:
         if str(tag.tag_id) != target_tag:
             continue
@@ -176,7 +178,7 @@ def detect_tags(img, target_point_dist = None, visualize = False):
             T_camera_tag[3,3] = 1.0
             T_camera_tag[0:3,3:] = tag.pose_t
             T_camera_tag[0:3,0:3] = tag.pose_R
-            point_below = get_point_below_tag(T_camera_tag, meters_below=0.55, K=K)
+            point_below = get_point_below_tag(T_camera_tag, meters_below=0.45, K=K)
             if visualize:
                 cv2.line(img, point_below, (cX, cY), (255, 0, 0) , 3)
             target = {'position': T_camera_tag, 'pixel_coords': point_below}
@@ -231,7 +233,7 @@ def stop_drone():
 # NOTE THAT CTRL-C SHOULD MAKE YOUR DRONE LAND AND STOP THE PROPS
 if fly:
     tello.takeoff()
-    tello.move_up(150)
+    tello.move_up(155)
 
 while True:
     # GET THE IMAGE FROM TELLO
@@ -254,7 +256,7 @@ while True:
         # left_right_vel = get_left_right_control( 
         #     cx, tag_data[target_tag]['tag'].center[0], gain=P_x)
         # up_down_vel = get_up_down_control(
-        #     cy, tag_data[target_tag]['tag'].center[1], gain=P_y)
+        #     cy, tag_data[target_tag]['tag'].center[1] - 15, gain=P_y)
         yaw_velocity = 0
 
         # send control action to drone
@@ -264,10 +266,18 @@ while True:
     else:
         # if we don't see the tag, do the safe thing and stop the drone
         if flow_point != None :
+            # if abs(flow_point[0] - prev_flow_point[0]) > 10 and prev_flow_point != None: # to prevent the flow point from changing drastically
+            #     flow_point = prev_flow_point # counters drift
+            # else:
+            #     prev_flow_point = flow_point
             print("flow point active")
             x = flow_point[0]
             y = flow_point[1]
             z_dist = 2
+            # if abs(x - cx) > 15 or abs(y - cy) > 15: # should prevent rapid drift 
+            #     forward_vel = 3
+            # else:
+            #     forward_vel = get_z_control(target_dist, z_dist, gain=P_z)
             forward_vel = get_z_control(target_dist, z_dist, gain=P_z)
             left_right_vel = get_left_right_control(cx, x, gain=P_x)
             up_down_vel = get_up_down_control(cy, y, gain=P_y)
@@ -280,7 +290,10 @@ while True:
                 tag_ind += 1
                 if tag_ind == 2 or tag_ind == 4:
                     print("turn counter")
+                    tello.move_forward(100)
+                    tello.move_up(60)
                     tello.rotate_counter_clockwise(180)
+                    prev_flow_point = None
                 if tag_ind == 4:
                     tag_ind = 0
                 #tello.move_up(10)
