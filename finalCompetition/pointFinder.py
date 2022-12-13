@@ -15,7 +15,7 @@ height = 480  # HEIGHT OF THE IMAGE
 
 # intrinsic calibration
 cx = width / 2.0
-cy = height / 4.0
+cy = height / 3.0
 fx = 600
 fy = 600
 intrinsics = ([fx, fy, cx, cy])
@@ -90,6 +90,35 @@ cross_threshold = 55
 
 time_last_crossed = 0
 
+### Scanning params
+ccw = True
+counter = 0
+seek = False
+
+def scan_target():
+    global tracking_flow
+    global ccw
+    global counter
+    global seek
+    tracking_flow = False
+    if ccw and seek:
+        tello.rotate_counter_clockwise(30)
+        counter=counter+1
+        time.sleep(1)
+        if counter>=1 and ccw:
+            counter=0
+            ccw=False
+            tello.rotate_clockwise(30)
+
+    if ccw == False and seek:
+        tello.rotate_clockwise(30)
+        counter=counter+1
+        time.sleep(1)
+        if counter>=1 and not ccw:
+            counter=0
+            ccw=True
+            tello.move_up(10)
+            tello.rotate_counter_clockwise(30)  
 
 # piece 2
 def check_crossed_target():
@@ -233,7 +262,7 @@ def stop_drone():
 # NOTE THAT CTRL-C SHOULD MAKE YOUR DRONE LAND AND STOP THE PROPS
 if fly:
     tello.takeoff()
-    tello.move_up(155)
+    tello.move_up(165)
 
 while True:
     # GET THE IMAGE FROM TELLO
@@ -246,13 +275,22 @@ while True:
     # extract tag location and control drone
     target_tag = target_tags[tag_ind]
     print(target_tag)
+    has_checked_tags = False
     if target_tag in tag_data and not tracking_flow:
         print('inside')
+        has_checked_tags = True
+        seek = False
         z_dist = tag_data[target_tag]['tag'].pose_t[2]
         # get velocity components
-        forward_vel = get_z_control(target_dist, z_dist, gain=P_z)
-        left_right_vel = get_left_right_control(cx, tag_data[target_tag]["target"]["pixel_coords"][0], gain = P_x)
-        up_down_vel = get_left_right_control(cx, tag_data[target_tag]["target"]["pixel_coords"][1], gain = P_y)
+        x_pos = tag_data[target_tag]["target"]["pixel_coords"][0]
+        y_pos = tag_data[target_tag]["target"]["pixel_coords"][1]
+        left_right_vel = get_left_right_control(cx, x_pos, gain = P_x)
+        if abs(x_pos - cx) > 35: 
+            forward_vel = forward_vel = get_z_control(target_dist, z_dist, gain=P_z*0.5)
+            up_down_vel = get_up_down_control(cy, y_pos, gain = P_y*0.5)
+        else:
+            forward_vel = get_z_control(target_dist, z_dist, gain=P_z*1.5)
+            up_down_vel = get_up_down_control(cy, y_pos, gain = P_y)
         # left_right_vel = get_left_right_control( 
         #     cx, tag_data[target_tag]['tag'].center[0], gain=P_x)
         # up_down_vel = get_up_down_control(
@@ -265,7 +303,7 @@ while True:
                           up_down_vel, yaw_velocity)
     else:
         # if we don't see the tag, do the safe thing and stop the drone
-        if flow_point != None:
+        if flow_point != None and seek == False:
             # if abs(flow_point[0] - prev_flow_point[0]) > 10 and prev_flow_point != None: # to prevent the flow point from changing drastically
             #     flow_point = prev_flow_point # counters drift
             # else:
@@ -274,33 +312,37 @@ while True:
             x = flow_point[0]
             y = flow_point[1]
             z_dist = 2
-            # if abs(x - cx) > 15 or abs(y - cy) > 15: # should prevent rapid drift 
-            #     forward_vel = 3
-            # else:
-            #     forward_vel = get_z_control(target_dist, z_dist, gain=P_z)
             forward_vel = get_z_control(target_dist, z_dist, gain=P_z)
             left_right_vel = get_left_right_control(cx, x, gain=P_x)
             up_down_vel = get_up_down_control(cy, y, gain=P_y)
             yaw_velocity = 0
+            if check_crossed_target():
+                has_checked_tags = False
+                tracking_flow = False
+                tag_ind += 1
+                if tag_ind == 1 or tag_ind == 3:
+                    tello.move_up(20)
+                    tello.move_forward(20)
+                if tag_ind == 2 or tag_ind == 4:
+                    print("turn counter")
+                    tello.move_forward(165)
+                    tello.move_up(40)
+                    tello.rotate_counter_clockwise(180)
+                    prev_flow_point = None
+                    seek = True
+                    x = 0
+                    ccw = True
+                if tag_ind == 4:
+                    tag_ind = 0
+            else:
+                tracking_flow = True # tracking the flow point 
             if fly: 
                 send_velocity_command(left_right_vel, forward_vel, 
                             up_down_vel, yaw_velocity)
-            if check_crossed_target():
-                tracking_flow = False
-                tag_ind += 1
-                if tag_ind == 2 or tag_ind == 4:
-                    print("turn counter")
-                    tello.move_forward(130)
-                    tello.move_up(45)
-                    tello.rotate_counter_clockwise(180)
-                    prev_flow_point = None
-                if tag_ind == 4:
-                    tag_ind = 0
-                #tello.move_up(10)
-            else:
-                tracking_flow = True # tracking the flow point 
         else: # 
-            tello.land()
+            if has_checked_tags:
+                scan_target()
+                
         
     #time.sleep(.1)
 
