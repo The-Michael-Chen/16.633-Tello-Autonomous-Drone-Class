@@ -15,7 +15,7 @@ height = 480  # HEIGHT OF THE IMAGE
 
 # intrinsic calibration
 cx = width / 2.0
-cy = height / 2.0
+cy = height / 4.0
 fx = 600
 fy = 600
 intrinsics = ([fx, fy, cx, cy])
@@ -290,8 +290,8 @@ while True:
                 tag_ind += 1
                 if tag_ind == 2 or tag_ind == 4:
                     print("turn counter")
-                    tello.move_forward(100)
-                    tello.move_up(60)
+                    tello.move_forward(130)
+                    tello.move_up(45)
                     tello.rotate_counter_clockwise(180)
                     prev_flow_point = None
                 if tag_ind == 4:
