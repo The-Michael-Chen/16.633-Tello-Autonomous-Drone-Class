@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Feature Tracking &mdash; 16.633 Autonomous Machines 1.0.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/clipboard.min.js"></script>
+        <script src="_static/copybutton.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Autonomy Stack Integration" href="autonomy_stack_integration.html" />
+    <link rel="prev" title="Drone Control Part 1" href="drone_control_part1.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> 16.633 Autonomous Machines
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Tello Edu Overview</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="tello_edu_overview.html">Tello Edu Overview</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Exercise 01</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="manually_flying.html">Manually Flying</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Exercise 02</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="installing_python_pycharm.html">Installing Python and PyCharm/VSCode</a></li>
+<li class="toctree-l1"><a class="reference internal" href="programming_sdk_2_0.html">Programming Using the Tello SDK 2.0</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Exercise 03</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="intro_image_computations_part1.html">Introduction to Image Computations: Object Tracking Part 1</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Exercise 04</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="intro_image_computations_part2.html">Introduction to Image Computations: Object Tracking Part 2</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Exercise 05</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="intro_image_computations_part3.html">Introduction to Image Computations: Object Tracking Part 3</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Exercise 06</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="drone_control_part1.html">Drone Control Part 1</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Exercise 07</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Feature Tracking</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#introduction">1 Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#introduction-to-feature-tracking">2 Introduction to Feature Tracking</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#how-we-will-use-feature-tracking">3 How We Will Use Feature Tracking</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#implementing-feature-tracking-into-our-code">4 Implementing Feature Tracking into Our Code</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Exercise 08</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="autonomy_stack_integration.html">Autonomy Stack Integration</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">User Manuals and Specifications</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="tello_edu_specs.html">Tello Edu Specifications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tello_user_manual.html">Tello User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tello_sdk_2_0_user_guide.html">Tello SDK 2.0 User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="td1_controller.html">Td1 Controller Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="batteries_charging.html">Batteries/Charging</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">16.633 Autonomous Machines</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Feature Tracking</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="feature-tracking">
+<h1>Feature Tracking<a class="headerlink" href="#feature-tracking" title="Permalink to this headline"></a></h1>
+<dl class="field-list simple">
+<dt class="field-odd">Author</dt>
+<dd class="field-odd"><p>Dominic Maggio</p>
+</dd>
+</dl>
+<section id="introduction">
+<h2>1 Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline"></a></h2>
+<p>Recall that since our goal is to fly though the obstacles we need to identify the
+center of the obstacles. Up to now, we have the ability to detect the center quite
+well by using april tags. However, there is one issue - as we get close to the
+obstacles the april tag is out of our field of view. Today we will fix this issue
+using a fundamental concept of robotic perception: <strong>feature tracking</strong>.</p>
+</section>
+<section id="introduction-to-feature-tracking">
+<h2>2 Introduction to Feature Tracking<a class="headerlink" href="#introduction-to-feature-tracking" title="Permalink to this headline"></a></h2>
+<p>The problem statement for feature tracking is, given a selected point <span class="math notranslate nohighlight">\(u_1\)</span> in an
+image <span class="math notranslate nohighlight">\(I_1\)</span>, find a new point <span class="math notranslate nohighlight">\(u_2\)</span> in a new image <span class="math notranslate nohighlight">\(I_2\)</span> of the scene such that
+<span class="math notranslate nohighlight">\(u_1\)</span> and <span class="math notranslate nohighlight">\(u_2\)</span> identify the same feature in the world. The is explained visually
+in Figure 1.</p>
+<figure class="align-center" id="id1">
+<a class="reference internal image-reference" href="_images/opt.PNG"><img alt="Feature Tracking with Optical Flow" src="_images/opt.PNG" style="width: 513.0px; height: 363.0px;" /></a>
+<figcaption>
+<p><span class="caption-text">Figure 1: Example of Feature Tracking with Optical Flow</span><a class="headerlink" href="#id1" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+<section id="how-we-will-use-feature-tracking">
+<h2>3 How We Will Use Feature Tracking<a class="headerlink" href="#how-we-will-use-feature-tracking" title="Permalink to this headline"></a></h2>
+<p>We will determine our target point using April tag tracking if the tag can be tracked.
+If the tag cannot be tracked, then we will compute the <strong>optical flow</strong> from the last known
+location of the target point. We will then keep propagating the target point with
+optical flow until we either detect the tag again, or have determined it is time to
+detect a new obstacle in the race.</p>
+<p>A demonstration of this working can be found at <a class="reference external" href="https://youtube.com/shorts/np0WL1mCWzU?feature=share">https://youtube.com/shorts/np0WL1mCWzU?feature=share</a>.</p>
+<p>Note, that there is one very important assumption we are making. The 3D point we are
+doing optical flow with does not actually live on the white board that the tag is
+attached to. It lives somewhere behind the board. Thus, if we tell our controller to
+follow the point using optical flow, we cannot be sure that our drone will eventually
+pass through the white board unless our image plane is roughly parallel to the white
+board and the drone is roughly well aligned with the target point BEFORE we switch
+from april tag tracking to optical flow. For a more technical understanding, refer
+to literature on the “focus of expansion”.</p>
+</section>
+<section id="implementing-feature-tracking-into-our-code">
+<h2>4 Implementing Feature Tracking into Our Code<a class="headerlink" href="#implementing-feature-tracking-into-our-code" title="Permalink to this headline"></a></h2>
+<p>First, I would recommend that you put a boolean flag
+somewhere in your code so that you can easily turn off/on the code that tells your drone
+to fly. That will make developing and testing code much easier.</p>
+<p>We will be using a method called Lucas-Kanade
+<a class="reference external" href="https://docs.opencv.org/3.4/d4/dee/tutorial_optical_flow.html">https://docs.opencv.org/3.4/d4/dee/tutorial_optical_flow.html</a> to do optical flow.
+OpenCV provides an implementation of this that we can easily put into our current code.</p>
+<p>First, add user params for Lucas-Kanade. Note that <code class="docutils literal notranslate"><span class="pre">winSize</span></code> is probably the only param
+you will want to change if any. It tells the code what size area in pixels to search over.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Parameters for lucas kanade optical flow</span>
+<span class="n">lk_params</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span> <span class="n">winSize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">45</span><span class="p">,</span> <span class="mi">45</span><span class="p">),</span>
+                  <span class="n">maxLevel</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span>
+                  <span class="n">criteria</span> <span class="o">=</span> <span class="p">(</span><span class="n">cv2</span><span class="o">.</span><span class="n">TERM_CRITERIA_EPS</span> <span class="o">|</span> <span class="n">cv2</span><span class="o">.</span><span class="n">TERM_CRITERIA_COUNT</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mf">0.03</span><span class="p">)</span> <span class="p">)</span>
+</pre></div>
+</div>
+<p>To run optical flow use``cv2.calcOpticalFlowPyrLK`` such as below. We need to understand
+what the inputs to the function are in order to integrate it into our code. It should
+not be that much code to incorporate this into your current code. I’ll provide a
+foundation here for the setup, then let you incorporate it yourself.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">u1</span><span class="p">)</span> <span class="ow">is</span> <span class="nb">tuple</span><span class="p">:</span>
+        <span class="n">u1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">u1</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">u1</span><span class="p">[</span><span class="mi">1</span><span class="p">]],</span><span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;float32&quot;</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
+<span class="n">u2</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">calcOpticalFlowPyrLK</span><span class="p">(</span><span class="n">old_gray</span><span class="p">,</span> <span class="n">new_gray</span><span class="p">,</span> <span class="n">u1</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">lk_params</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>We need a gray scale (<code class="docutils literal notranslate"><span class="pre">old_gray</span></code>) image which contains some point <span class="math notranslate nohighlight">\(u1\)</span> that we want to
+find optical flow for. Note that <span class="math notranslate nohighlight">\(u1\)</span> needs to be a <span class="math notranslate nohighlight">\(1 \times 1 \times 2\)</span> numpy array.
+When I initially get <span class="math notranslate nohighlight">\(u1\)</span>
+from the target detection code from the tag tracker it is a tuple, so I need to convert
+it. I’ve included an example of that in the above code.</p>
+<p>You can covert to gray scale using:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">gray_img</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">rgb_img</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BGR2GRAY</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>We also need the next image (<code class="docutils literal notranslate"><span class="pre">new_gray</span></code>) which will be the image where are trying to
+find <span class="math notranslate nohighlight">\(u2\)</span>.</p>
+<p>Set up your code such that <span class="math notranslate nohighlight">\(u1\)</span> is defined as the detected target from the tag if it is
+available, else we just use the last <span class="math notranslate nohighlight">\(u2\)</span> that was calculated. Using
+<code class="docutils literal notranslate"><span class="pre">calcOpticalFlowPyrLK</span></code> is a pretty cheap computation for a single point, so its fine to
+run optical flow for ever image we process even if we see the tag if that makes your code
+cleaner.</p>
+<p>You should also make sure the point you calculate from optical flow is being drawn on the
+visualization image. By now you have seen examples of how to draw on images using OpenCV
+and should have the tools to do this without having to write much code.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="drone_control_part1.html" class="btn btn-neutral float-left" title="Drone Control Part 1" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="autonomy_stack_integration.html" class="btn btn-neutral float-right" title="Autonomy Stack Integration" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, MIT-NEET Autonomous Machines.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

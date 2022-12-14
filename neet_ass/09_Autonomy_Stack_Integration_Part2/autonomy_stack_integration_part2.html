@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Autonomy Stack Integration Part 2 &mdash; 16.633 Autonomous Machines 1.0.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/clipboard.min.js"></script>
+        <script src="_static/copybutton.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Tello Edu Specifications" href="tello_edu_specs.html" />
+    <link rel="prev" title="Autonomy Stack Integration" href="autonomy_stack_integration.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> 16.633 Autonomous Machines
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Tello Edu Overview</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="tello_edu_overview.html">Tello Edu Overview</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Exercise 01</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="manually_flying.html">Manually Flying</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Exercise 02</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="installing_python_pycharm.html">Installing Python and PyCharm/VSCode</a></li>
+<li class="toctree-l1"><a class="reference internal" href="programming_sdk_2_0.html">Programming Using the Tello SDK 2.0</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Exercise 03</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="intro_image_computations_part1.html">Introduction to Image Computations: Object Tracking Part 1</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Exercise 04</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="intro_image_computations_part2.html">Introduction to Image Computations: Object Tracking Part 2</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Exercise 05</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="intro_image_computations_part3.html">Introduction to Image Computations: Object Tracking Part 3</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Exercise 06</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="drone_control_part1.html">Drone Control Part 1</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Exercise 07</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="feature_tracking.html">Feature Tracking</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Exercise 08</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="autonomy_stack_integration.html">Autonomy Stack Integration</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Exercise 09</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Autonomy Stack Integration Part 2</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#introduction">1 Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#implementation">2 Implementation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#next-time">3 Next Time</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">User Manuals and Specifications</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="tello_edu_specs.html">Tello Edu Specifications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tello_user_manual.html">Tello User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tello_sdk_2_0_user_guide.html">Tello SDK 2.0 User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="td1_controller.html">Td1 Controller Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="batteries_charging.html">Batteries/Charging</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">16.633 Autonomous Machines</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Autonomy Stack Integration Part 2</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="autonomy-stack-integration-part-2">
+<h1>Autonomy Stack Integration Part 2<a class="headerlink" href="#autonomy-stack-integration-part-2" title="Permalink to this headline"></a></h1>
+<dl class="field-list simple">
+<dt class="field-odd">Author</dt>
+<dd class="field-odd"><p>Dominic Maggio</p>
+</dd>
+</dl>
+<section id="introduction">
+<h2>1 Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline"></a></h2>
+<p>Last time we learned how to fly through a single obstacle.
+The final component we are missing to be able to fly through multiple obstacles is knowing
+when it is time to start tracking the next obstacle (i.e. when has our drone passed though
+the obstacle we are currently tracking). Today, we will learn how to do this.</p>
+</section>
+<section id="implementation">
+<h2>2 Implementation<a class="headerlink" href="#implementation" title="Permalink to this headline"></a></h2>
+<p>The basic idea we will use to determine when we pass through an obstacle, will be to
+utilize the range finding sensor on the bottom of the drone to detect the bottom plate of
+the obstacle (Figure 1).</p>
+<figure class="align-center" id="id1">
+<a class="reference internal image-reference" href="_images/drone_target.PNG"><img alt="Obstacle crossing detection" src="_images/drone_target.PNG" style="width: 646.0px; height: 427.0px;" /></a>
+<figcaption>
+<p><span class="caption-text">Figure 1: Bottom plate used to detect when a drone has crossed an obstacle (left). Two example obstacles for the race course (note bottom plates will be attached).</span><a class="headerlink" href="#id1" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>To determine if your drone has passed through an obstacle, you can add the following code (<code class="docutils literal notranslate"><span class="pre">piece</span> <span class="pre">1,</span> <span class="pre">piece</span> <span class="pre">2,</span> <span class="pre">and</span> <span class="pre">piece</span> <span class="pre">3</span></code>) to your existing navigation program.</p>
+<p>First, add these two global variables, <code class="docutils literal notranslate"><span class="pre">cross_threshold</span></code> and <code class="docutils literal notranslate"><span class="pre">time_last_crossed</span></code> to your existing program.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># piece 1</span>
+<span class="c1"># distance to ground below this is considered an obstacle crossing</span>
+<span class="c1"># may need to tune this</span>
+<span class="n">cross_threshold</span> <span class="o">=</span> <span class="mi">45</span>
+
+<span class="n">time_last_crossed</span> <span class="o">=</span> <span class="mi">0</span>
+</pre></div>
+</div>
+<p>Now, add the following function <code class="docutils literal notranslate"><span class="pre">checked_cross_target()</span></code> to check if a new obstacle has been passed through (note: there is a
+bug in the tello api, so to get height, you actually ask for time of flight (<code class="docutils literal notranslate"><span class="pre">tof</span></code>) which I’ve already done for you in the function).</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># piece 2</span>
+<span class="k">def</span> <span class="nf">check_crossed_target</span><span class="p">():</span>
+        <span class="k">global</span> <span class="n">time_last_crossed</span>
+        <span class="c1"># wait this long between detections</span>
+        <span class="c1"># otherwise you will count multiple crossing when you only crossed once</span>
+        <span class="n">cutoff_time</span> <span class="o">=</span> <span class="mi">7</span>
+
+        <span class="c1"># get current drone altitude</span>
+        <span class="k">if</span> <span class="n">tello</span><span class="o">.</span><span class="n">get_current_state</span><span class="p">()[</span><span class="s1">&#39;tof&#39;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">cross_threshold</span><span class="p">:</span>
+                <span class="c1"># altitude is below threshold, so we detected an obstacle</span>
+                <span class="c1"># check cutoff time</span>
+                <span class="k">if</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">time_last_crossed</span> <span class="o">&gt;</span> <span class="n">cutoff_time</span><span class="p">:</span>
+                        <span class="c1"># new obstacle detected, reset cutoff time</span>
+                        <span class="n">time_last_crossed</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+                        <span class="k">return</span> <span class="kc">True</span>
+        <span class="k">return</span> <span class="kc">False</span>
+</pre></div>
+</div>
+<p>If you do detect a new crossing, then simply change your target tag to be the next tag in the chain. You can assume the order of the tags is known for you.
+Now your drone can fly through an obstacle course!</p>
+<p>Note that you should not call <code class="docutils literal notranslate"><span class="pre">checked_cross_target()</span></code> until your drone has had time
+to takeoff. Also note it may be useful to have your drone start at a higher altitude
+when it takes off (i.e. if the obstacles are high in the air). To do that, you can
+set an elevation in cm like so:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># piece 3</span>
+<span class="n">tello</span><span class="o">.</span><span class="n">move_up</span><span class="p">(</span><span class="mi">150</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="next-time">
+<h2>3 Next Time<a class="headerlink" href="#next-time" title="Permalink to this headline"></a></h2>
+<p>You have finally learned all the main concepts to fly through the obstacle course. Now you
+just need to test your drone out and add some small tricks if desired to increase your
+drone’s speed and robustness.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="autonomy_stack_integration.html" class="btn btn-neutral float-left" title="Autonomy Stack Integration" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="tello_edu_specs.html" class="btn btn-neutral float-right" title="Tello Edu Specifications" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, MIT-NEET Autonomous Machines.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

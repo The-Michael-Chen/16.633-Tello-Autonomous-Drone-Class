@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Introduction to Image Computations: Object Tracking Part 1 &mdash; 16.633 Autonomous Machines 1.0.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/clipboard.min.js"></script>
+        <script src="_static/copybutton.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Introduction to Image Computations: Object Tracking Part 2" href="intro_image_computations_part2.html" />
+    <link rel="prev" title="Programming Using the Tello SDK 2.0" href="programming_sdk_2_0.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> 16.633 Autonomous Machines
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Tello Edu Overview</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="tello_edu_overview.html">Tello Edu Overview</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Exercise 01</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="manually_flying.html">Manually Flying</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Exercise 02</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="installing_python_pycharm.html">Installing Python and PyCharm/VSCode</a></li>
+<li class="toctree-l1"><a class="reference internal" href="programming_sdk_2_0.html">Programming Using the Tello SDK 2.0</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Exercise 03</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Introduction to Image Computations: Object Tracking Part 1</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#introduction">1 Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#what-is-an-image">2 What is an Image?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#a-note-about-coordinate-frames">3 A Note about Coordinate Frames</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#image-frame">3.1 Image Frame</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#camera-frame">3.2 Camera Frame</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#installing-opencv-and-other-packages-we-will-need">4 Installing OpenCV and Other Packages We Will Need</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#april-tags">5 April Tags</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#our-first-computation-with-an-image-tag-tracking-with-sift">6 Our First Computation with an Image: Tag Tracking with SIFT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#faster-tag-tracking">7 Faster Tag Tracking</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#next-time">8 Next time</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Exercise 04</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="intro_image_computations_part2.html">Introduction to Image Computations: Object Tracking Part 2</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Exercise 05</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="intro_image_computations_part3.html">Introduction to Image Computations: Object Tracking Part 3</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Exercise 06</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="drone_control_part1.html">Drone Control Part 1</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">User Manuals and Specifications</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="tello_edu_specs.html">Tello Edu Specifications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tello_user_manual.html">Tello User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tello_sdk_2_0_user_guide.html">Tello SDK 2.0 User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="td1_controller.html">Td1 Controller Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="batteries_charging.html">Batteries/Charging</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">16.633 Autonomous Machines</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Introduction to Image Computations: Object Tracking Part 1</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="introduction-to-image-computations-object-tracking-part-1">
+<h1>Introduction to Image Computations: Object Tracking Part 1<a class="headerlink" href="#introduction-to-image-computations-object-tracking-part-1" title="Permalink to this headline"></a></h1>
+<dl class="field-list simple">
+<dt class="field-odd">Author</dt>
+<dd class="field-odd"><p>Dominic Maggio</p>
+</dd>
+</dl>
+<section id="introduction">
+<h2>1 Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline"></a></h2>
+<p>We will now enter the computer vision part of 16.633. We will be adding fundamental and powerful tools into our toolbox that are not just essential to understanding perception for robotics, but are also used as components of many real world robotic’s pipelines.</p>
+<p>There are largely two regimes of computer vision, the so called “classical” regime and the machine learning regime. Classical methods use physics based models, optimization based methods, and hand crafted filters to solve computer vision problems. Most problems in computer vision have classical solutions. Recently, particularly in the past six years, machine learning has been applied to many (if not nearly all) computer vision problems. For some situations, classical solutions remain the method of choice, whereas for other situations such as object classification, machine learning is arguably a much more powerful tool. Regardless, both regimes are an active area of research trying to solve a wealth of unsolved problems in computer vision.</p>
+<p>This week will be a bit more background information than we will usually have since we need to break the ice with an intro into computer vision. To make up for that, I have provided most of this week’s code for you. Next week, you will be writing more of the code for yourself, so please reach out if any of this week’s concepts are not clear.</p>
+</section>
+<section id="what-is-an-image">
+<h2>2 What is an Image?<a class="headerlink" href="#what-is-an-image" title="Permalink to this headline"></a></h2>
+<p>We will begin our journey in computer vision by learning to view the camera as a powerful sensor that can allow our drone to perceive the world around it. Our drone (commonly referred to with more general terms as “the agent” by roboticists) operates in a 3D world whereas the camera - or more specifically the image plane - exists in 2D space. This brings us to one of the most fundamental ideas in computer vision, the camera model. The camera model provides a simple physics based understanding of how we project objects from 3D space where our agent lives, into the 2D space of a camera image.</p>
+<figure class="align-center" id="id1">
+<a class="reference internal image-reference" href="_images/pinhole_camera.PNG"><img alt="Pinhole camera model" src="_images/pinhole_camera.PNG" style="width: 817.5px; height: 238.5px;" /></a>
+<figcaption>
+<p><span class="caption-text">Figure 1: Pinhole Camera Model</span><a class="headerlink" href="#id1" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>Figure 1 shows the most common camera model - the pinhole model. In short, imagine a fully sealed box with a piece of film on the back wall and a very small hole (a pinhole) on the forward wall. Light from objects enters through the pinhole (called the focal point) and is projected on the film. The distance between the focal point and the film is called the focal length.</p>
+<p>However, With our first step towards understanding images also comes our first problem. The issue of scale! The height of an object in pixel space, <span class="math notranslate nohighlight">\(c_y\)</span> is related to the height of the object in world space <span class="math notranslate nohighlight">\(Y\)</span> by Equation <a class="reference internal" href="intro_image_computations_part2.html#equation-eq-projection">(1)</a>. Notice that a tall object far away can have the same size in the image as a small object close to the camera. This lets us do cool things like have an image of ourselves holding up the leaning tower of pisa (Figure 2), but as we will see later will create tough challenges for computer vision problems.</p>
+<figure class="align-center" id="id2">
+<a class="reference internal image-reference" href="_images/pisa.PNG"><img alt="Pinhole Camera Model in Action" src="_images/pisa.PNG" style="width: 292.0px; height: 360.0px;" /></a>
+<figcaption>
+<p><span class="caption-text">Figure 2: The Pinhole Camera Model in Action</span><a class="headerlink" href="#id2" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<div class="math notranslate nohighlight" id="equation-eq-projection">
+<span class="eqno">(1)<a class="headerlink" href="#equation-eq-projection" title="Permalink to this equation"></a></span>\[\frac{c_y}{f} = \frac{Y}{Z}\]</div>
+</section>
+<section id="a-note-about-coordinate-frames">
+<h2>3 A Note about Coordinate Frames<a class="headerlink" href="#a-note-about-coordinate-frames" title="Permalink to this headline"></a></h2>
+<p>Coordinate frames are a common headache for roboticists but are extremely important - sometimes I spend a weekend just doing coordinate frame transforms. Just to name a few common frames you’ll hear about in robotics: camera frame, image frame, body frame, IMU frame, ECEF (earth centered earth fixed), ENU (east north up), NED (north east down), etc. We will only be seeing a few of these frames right now which I’ve included below.</p>
+<figure class="align-center" id="id3">
+<a class="reference external image-reference" href="https://vnav.mit.edu/material/02-03-basic3Dgeometry-notes.pdf"><img alt="Camera and Image Coordinate Frames" src="_images/cam_frame.PNG" style="width: 507.75px; height: 406.5px;" /></a>
+<figcaption>
+<p><span class="caption-text">Figure 3: Camera and Image Coordinate Frames, (photo credit to MIT VNAV, 16.485)</span><a class="headerlink" href="#id3" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<section id="image-frame">
+<h3>3.1 Image Frame<a class="headerlink" href="#image-frame" title="Permalink to this headline"></a></h3>
+<p>The image frame is a 2D frame whose origin is traditionally defined in the top left corner of the image with <span class="math notranslate nohighlight">\(x\)</span> axis pointing right along the horizontal and <span class="math notranslate nohighlight">\(y\)</span> axis pointing down along the vertical. Image axis <span class="math notranslate nohighlight">\(x_1, y_1\)</span> are shown in Figure 3</p>
+</section>
+<section id="camera-frame">
+<h3>3.2 Camera Frame<a class="headerlink" href="#camera-frame" title="Permalink to this headline"></a></h3>
+<p>This is a 3D frame whose <span class="math notranslate nohighlight">\(z\)</span> axis points along the boresight (forward facing direction) of the camera, <span class="math notranslate nohighlight">\(x\)</span> axis horizontal facing right, and <span class="math notranslate nohighlight">\(y\)</span> axis pointing down. The origin is the center of the camera. Camera axis <span class="math notranslate nohighlight">\(x_c, y_c, z_c\)</span> are shown in Figure 3. This is a very important frame that we will be referencing later so please ask questions if its not very clear what this frame is.</p>
+</section>
+</section>
+<section id="installing-opencv-and-other-packages-we-will-need">
+<h2>4 Installing OpenCV and Other Packages We Will Need<a class="headerlink" href="#installing-opencv-and-other-packages-we-will-need" title="Permalink to this headline"></a></h2>
+<p>If you can run the following code then you don’t need to re-install opencv,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">cv2</span>
+<span class="n">cv2</span><span class="o">.</span><span class="n">SIFT_create</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>otherwise install the below version of opencv:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">opencv</span><span class="o">-</span><span class="n">python</span><span class="o">==</span><span class="mf">4.5.5.64</span>
+</pre></div>
+</div>
+<p>We will use this package to track april tags reliably and quickly:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">pupil</span><span class="o">-</span><span class="n">apriltags</span>
+</pre></div>
+</div>
+</section>
+<section id="april-tags">
+<h2>5 April Tags<a class="headerlink" href="#april-tags" title="Permalink to this headline"></a></h2>
+<p>Will be will tracking special markers used frequently in robotics called april tags. April tags are easy to track because they have clear contrasting colors (black and white), crisp lines and corners, are a planar object, and we have excellent prior knowledge of the tag’s pattern. We will be using the collection of tags here:
+<a class="reference external" href="https://www.dotproduct3d.com/uploads/8/5/1/1/85115558/apriltags1-20.pdf">https://www.dotproduct3d.com/uploads/8/5/1/1/85115558/apriltags1-20.pdf</a>.</p>
+</section>
+<section id="our-first-computation-with-an-image-tag-tracking-with-sift">
+<h2>6 Our First Computation with an Image: Tag Tracking with SIFT<a class="headerlink" href="#our-first-computation-with-an-image-tag-tracking-with-sift" title="Permalink to this headline"></a></h2>
+<p>Our first exercise with an image will be to track an april tag given a sensor image of the environment and an image of the tag (or tags) we want to track. We will then determine the location of the tag in the image.</p>
+<p>We will use a very famous algorithm in computer vision, SIFT (Scale Invariant Feature Transform). Quite (in)famously, the paper on SIFT by David Lowe was rejected by a conference when it was first submitted, and to get the work published, Lowe instead filed it under a patent which has created a few minor complications with using SIFT with OpenCV. Luckily for us, the patent has recently expired which will hopefully reduce issues with installing a version of OpenCV that supports SIFT.</p>
+<p>In short, SIFT finds keypoints on an image and a template, assigns each keypoint a descriptor, and then matches descriptors to find corresponding points on the image and template.</p>
+<p>Take an image of one of the april tags with your cell phone. Also, take an image of a larger scene that contains the tag. The tag can be at any angle, but please keep it on a flat surface. Save both images in the same directory as <code class="docutils literal notranslate"><span class="pre">sift.py</span></code> (code given below).</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">cv2</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+
+<span class="n">SHOW_IMAGE</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="n">USE_SIFT</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">lowe_ratio</span> <span class="o">=</span> <span class="mf">0.4</span>
+
+<span class="n">img</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="s1">&#39;track.JPG&#39;</span><span class="p">)</span>
+<span class="n">template</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="s1">&#39;tag2.JPG&#39;</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="c1"># convert BRG to RGB then convert to grayscale</span>
+<span class="n">img</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BGR2RGB</span><span class="p">)</span>
+<span class="n">img_gray</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_RGB2GRAY</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">SHOW_IMAGE</span><span class="p">:</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="k">if</span> <span class="n">USE_SIFT</span><span class="p">:</span>
+    <span class="c1"># code borrowed from https://docs.opencv.org/4.x/dc/dc3/tutorial_py_matcher.html</span>
+    <span class="c1"># Initiate SIFT detector</span>
+    <span class="c1"># use pip install opencv-python==4.5.5.64 if SIFT isn&#39;t part of cv2</span>
+    <span class="n">sift</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">SIFT_create</span><span class="p">()</span>
+    <span class="c1"># find the keypoints and descriptors with SIFT</span>
+    <span class="n">kp1</span><span class="p">,</span> <span class="n">des1</span> <span class="o">=</span> <span class="n">sift</span><span class="o">.</span><span class="n">detectAndCompute</span><span class="p">(</span><span class="n">img</span><span class="p">,</span><span class="kc">None</span><span class="p">)</span>
+    <span class="n">kp2</span><span class="p">,</span> <span class="n">des2</span> <span class="o">=</span> <span class="n">sift</span><span class="o">.</span><span class="n">detectAndCompute</span><span class="p">(</span><span class="n">template</span><span class="p">,</span><span class="kc">None</span><span class="p">)</span>
+    <span class="c1"># FLANN parameters</span>
+    <span class="n">FLANN_INDEX_KDTREE</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">index_params</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">algorithm</span> <span class="o">=</span> <span class="n">FLANN_INDEX_KDTREE</span><span class="p">,</span> <span class="n">trees</span> <span class="o">=</span> <span class="mi">5</span><span class="p">)</span>
+    <span class="n">search_params</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">checks</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>   <span class="c1"># or pass empty dictionary</span>
+    <span class="n">flann</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">FlannBasedMatcher</span><span class="p">(</span><span class="n">index_params</span><span class="p">,</span><span class="n">search_params</span><span class="p">)</span>
+    <span class="n">matches</span> <span class="o">=</span> <span class="n">flann</span><span class="o">.</span><span class="n">knnMatch</span><span class="p">(</span><span class="n">des1</span><span class="p">,</span><span class="n">des2</span><span class="p">,</span><span class="n">k</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+    <span class="c1"># Need to draw only good matches, so create a mask</span>
+    <span class="n">matchesMask</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">matches</span><span class="p">))]</span>
+    <span class="c1"># ratio test as per Lowe&#39;s paper</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,(</span><span class="n">m</span><span class="p">,</span><span class="n">n</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">matches</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">m</span><span class="o">.</span><span class="n">distance</span> <span class="o">&lt;</span> <span class="n">lowe_ratio</span> <span class="o">*</span> <span class="n">n</span><span class="o">.</span><span class="n">distance</span><span class="p">:</span>
+            <span class="n">matchesMask</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span>
+            
+    <span class="n">draw_params</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">matchColor</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">255</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span>
+                       <span class="n">singlePointColor</span> <span class="o">=</span> <span class="p">(</span><span class="mi">255</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span>
+                       <span class="n">matchesMask</span> <span class="o">=</span> <span class="n">matchesMask</span><span class="p">,</span>
+                       <span class="n">flags</span> <span class="o">=</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="n">img3</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">drawMatchesKnn</span><span class="p">(</span><span class="n">img</span><span class="p">,</span><span class="n">kp1</span><span class="p">,</span><span class="n">template</span><span class="p">,</span><span class="n">kp2</span><span class="p">,</span><span class="n">matches</span><span class="p">,</span><span class="kc">None</span><span class="p">,</span><span class="o">**</span><span class="n">draw_params</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">img3</span><span class="p">,),</span><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Now, use the provided <code class="docutils literal notranslate"><span class="pre">sift.py</span></code> script to generate matches between the image and template. Play with the parameter <code class="docutils literal notranslate"><span class="pre">lowe_ratio</span></code> by setting it in the range (0,1) and see how it affects results. In short, the <code class="docutils literal notranslate"><span class="pre">lowe_ratio</span></code> lets us set a bar on how confident we want our code to be in order to say two keypoints are a match.</p>
+</section>
+<section id="faster-tag-tracking">
+<h2>7 Faster Tag Tracking<a class="headerlink" href="#faster-tag-tracking" title="Permalink to this headline"></a></h2>
+<p>Now that we’ve built a base understanding of how to locate an object in an image, let’s try an open source library made just for tag tracking. This will let us leverage pre-built work designed just for tag tracking to get faster and more reliable performance. Additionally, this library has other fun features we may leverage in later exercises such as determining the 3D location of the tags with respect to the camera.</p>
+<p>The library we will be using is <a class="reference external" href="https://pypi.org/project/pupil-apriltags/">https://pypi.org/project/pupil-apriltags/</a>. The link contains extra information about the features of the library.</p>
+<p>Take some images with your cell phone camera containing any number of tags at different orientations (just keep them flat), save the images, and use the provided <code class="docutils literal notranslate"><span class="pre">tag_tracker.py</span></code> (see code below) script to track the tags.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># code adapted from https://pypi.org/project/pupil-apriltags/</span>
+<span class="c1"># and https://pyimagesearch.com/2020/11/02/apriltag-with-python/</span>
+
+<span class="kn">import</span> <span class="nn">cv2</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">from</span> <span class="nn">pupil_apriltags</span> <span class="kn">import</span> <span class="n">Detector</span>
+
+<span class="n">img</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="s1">&#39;tags.JPG&#39;</span><span class="p">)</span>
+<span class="n">img</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BGR2RGB</span><span class="p">)</span>
+<span class="n">img_gray</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_RGB2GRAY</span><span class="p">)</span>
+
+<span class="n">at_detector</span> <span class="o">=</span> <span class="n">Detector</span><span class="p">(</span><span class="n">families</span><span class="o">=</span><span class="s1">&#39;tag36h11&#39;</span><span class="p">,</span>
+                       <span class="n">nthreads</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                       <span class="n">quad_decimate</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>
+                       <span class="n">quad_sigma</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
+                       <span class="n">refine_edges</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                       <span class="n">decode_sharpening</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span>
+                       <span class="n">debug</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="n">tags</span> <span class="o">=</span> <span class="n">at_detector</span><span class="o">.</span><span class="n">detect</span><span class="p">(</span><span class="n">img_gray</span><span class="p">,</span> <span class="n">estimate_tag_pose</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">camera_params</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">tag_size</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;number of tags detected:&quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">tags</span><span class="p">))</span>
+<span class="c1"># loop over the AprilTag detection results</span>
+<span class="k">for</span> <span class="n">tag</span> <span class="ow">in</span> <span class="n">tags</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;tag id:&quot;</span><span class="p">,</span> <span class="n">tag</span><span class="o">.</span><span class="n">tag_id</span><span class="p">)</span>
+	<span class="c1"># extract the bounding box (x, y)-coordinates for the AprilTag</span>
+	<span class="c1"># and convert each of the (x, y)-coordinate pairs to integers</span>
+    <span class="p">(</span><span class="n">ptA</span><span class="p">,</span> <span class="n">ptB</span><span class="p">,</span> <span class="n">ptC</span><span class="p">,</span> <span class="n">ptD</span><span class="p">)</span> <span class="o">=</span> <span class="n">tag</span><span class="o">.</span><span class="n">corners</span>
+    <span class="n">ptB</span> <span class="o">=</span> <span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">ptB</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="nb">int</span><span class="p">(</span><span class="n">ptB</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+    <span class="n">ptC</span> <span class="o">=</span> <span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">ptC</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="nb">int</span><span class="p">(</span><span class="n">ptC</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+    <span class="n">ptD</span> <span class="o">=</span> <span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">ptD</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="nb">int</span><span class="p">(</span><span class="n">ptD</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+    <span class="n">ptA</span> <span class="o">=</span> <span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">ptA</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="nb">int</span><span class="p">(</span><span class="n">ptA</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+	<span class="c1"># draw the bounding box of the AprilTag detection</span>
+    <span class="n">cv2</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">ptA</span><span class="p">,</span> <span class="n">ptB</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="n">cv2</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">ptB</span><span class="p">,</span> <span class="n">ptC</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="n">cv2</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">ptC</span><span class="p">,</span> <span class="n">ptD</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="n">cv2</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">ptD</span><span class="p">,</span> <span class="n">ptA</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="mi">2</span><span class="p">)</span>
+	<span class="c1"># draw the center (x, y)-coordinates of the AprilTag</span>
+    <span class="p">(</span><span class="n">cX</span><span class="p">,</span> <span class="n">cY</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">tag</span><span class="o">.</span><span class="n">center</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="nb">int</span><span class="p">(</span><span class="n">tag</span><span class="o">.</span><span class="n">center</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+    <span class="n">cv2</span><span class="o">.</span><span class="n">circle</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="p">(</span><span class="n">cX</span><span class="p">,</span> <span class="n">cY</span><span class="p">),</span> <span class="mi">5</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">),</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+	<span class="c1"># draw the tag family on the image</span>
+    <span class="n">tagFamily</span> <span class="o">=</span> <span class="n">tag</span><span class="o">.</span><span class="n">tag_family</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span>
+    <span class="n">cv2</span><span class="o">.</span><span class="n">putText</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">tagFamily</span><span class="p">,</span> <span class="p">(</span><span class="n">ptA</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">ptA</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="mi">15</span><span class="p">),</span>
+		<span class="n">cv2</span><span class="o">.</span><span class="n">FONT_HERSHEY_SIMPLEX</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;[INFO] tag family: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">tagFamily</span><span class="p">))</span>
+<span class="c1"># show the output image after AprilTag detection</span>
+    
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="next-time">
+<h2>8 Next time<a class="headerlink" href="#next-time" title="Permalink to this headline"></a></h2>
+<p>Next time we will use the camera on the drone to detect tags from a sequence of images and use tags
+for waypoint tracking to determine goal locations for our drone. You might have noticed that the apriltag library have us a lot of information about the detected tags that we haven’t used yet - we will be exploring that soon too!</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="programming_sdk_2_0.html" class="btn btn-neutral float-left" title="Programming Using the Tello SDK 2.0" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="intro_image_computations_part2.html" class="btn btn-neutral float-right" title="Introduction to Image Computations: Object Tracking Part 2" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, MIT-NEET Autonomous Machines.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

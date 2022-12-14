@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Installing Python and PyCharm/VSCode &mdash; 16.633 Autonomous Machines 1.0.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/clipboard.min.js"></script>
+        <script src="_static/copybutton.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Programming Using the Tello SDK 2.0" href="programming_sdk_2_0.html" />
+    <link rel="prev" title="Manually Flying" href="manually_flying.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> 16.633 Autonomous Machines
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Tello Edu Overview</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="tello_edu_overview.html">Tello Edu Overview</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Exercise 01</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="manually_flying.html">Manually Flying</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Exercise 02</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Installing Python and PyCharm/VSCode</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#installing-python">1 Installing Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#choose-a-python-editor">2 Choose a Python Editor</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#installing-pycharm">2.1 Installing PyCharm</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#installing-vscode">2.2 Installing VSCode</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="programming_sdk_2_0.html">Programming Using the Tello SDK 2.0</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Exercise 03</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="intro_image_computations_part1.html">Introduction to Image Computations: Object Tracking Part 1</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Exercise 04</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="intro_image_computations_part2.html">Introduction to Image Computations: Object Tracking Part 2</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Exercise 05</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="intro_image_computations_part3.html">Introduction to Image Computations: Object Tracking Part 3</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Exercise 06</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="drone_control_part1.html">Drone Control Part 1</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Exercise 07</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="feature_tracking.html">Feature Tracking</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Exercise 08</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="autonomy_stack_integration.html">Autonomy Stack Integration</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">User Manuals and Specifications</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="tello_edu_specs.html">Tello Edu Specifications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tello_user_manual.html">Tello User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tello_sdk_2_0_user_guide.html">Tello SDK 2.0 User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="td1_controller.html">Td1 Controller Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="batteries_charging.html">Batteries/Charging</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">16.633 Autonomous Machines</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Installing Python and PyCharm/VSCode</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="installing-python-and-pycharm-vscode">
+<h1>Installing Python and PyCharm/VSCode<a class="headerlink" href="#installing-python-and-pycharm-vscode" title="Permalink to this headline"></a></h1>
+<section id="installing-python">
+<h2>1 Installing Python<a class="headerlink" href="#installing-python" title="Permalink to this headline"></a></h2>
+<p>To program the Tello drone, you’ll need to install Python on your computer. Although the <a class="reference download internal" download="" href="_downloads/8e5998d5f13459f3cbc893209f10c027/Tello_SDK_2.0_User_Guide.pdf"><code class="xref download docutils literal notranslate"><span class="pre">Tello</span> <span class="pre">SDK</span> <span class="pre">2.0</span> <span class="pre">User</span> <span class="pre">Guide</span></code></a> doesn’t
+specify a specifc version of Python, please download the latest stable version of Python 3 from the website <a class="reference external" href="https://www.python.org/">www.python.org</a>.
+Here, you’ll find detailed installation instructions for Windows, macOS, and other platforms.</p>
+<p>During the installation process, click the option that says “Add Python 3.x to PATH” (see image below).</p>
+<a class="reference internal image-reference" href="_images/Python_Download.png"><img alt="Installing Python" class="align-center" src="_images/Python_Download.png" style="width: 500px; height: 295px;" /></a>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ul class="simple">
+<li><p>Download Python 3 from the website <a class="reference external" href="https://www.python.org/">www.python.org</a>.</p></li>
+<li><p>Click the option that says “Add Python 3.x to PATH.”</p></li>
+</ul>
+</div>
+</section>
+<section id="choose-a-python-editor">
+<h2>2 Choose a Python Editor<a class="headerlink" href="#choose-a-python-editor" title="Permalink to this headline"></a></h2>
+<p>To edit and run Python programs on your computer, we suggest using a one of the popular editors such as <a class="reference external" href="https://www.jetbrains.com/pycharm/">PyCharm</a> or
+<a class="reference external" href="https://code.visualstudio.com/">Visual Studio Code</a>. In previous years, students have successfully programmed their Tello with both of these IDEs.</p>
+<section id="installing-pycharm">
+<h3>2.1 Installing PyCharm<a class="headerlink" href="#installing-pycharm" title="Permalink to this headline"></a></h3>
+<p>You can download PyCharm at <a class="reference external" href="https://www.jetbrains.com/pycharm/download/">https://www.jetbrains.com/pycharm/download/</a>.
+Download the Community version, as it is free open source software (see image below).</p>
+<a class="reference internal image-reference" href="_images/PyCharm_Download.png"><img alt="Downloading PyCharm" class="align-center" src="_images/PyCharm_Download.png" style="width: 500px; height: 322px;" /></a>
+<p>When installing PyCharm, select the following options:</p>
+<ul class="simple">
+<li><p>Add “bin” folder to the PATH</p></li>
+<li><p>Create Associations .py</p></li>
+</ul>
+<a class="reference internal image-reference" href="_images/PyCharm_Install_Options.png"><img alt="PyCharm Options" class="align-center" src="_images/PyCharm_Install_Options.png" style="width: 500px; height: 377px;" /></a>
+<p>After installing PyCharm, you’ll need to restart your computer.</p>
+</section>
+<section id="installing-vscode">
+<h3>2.2 Installing VSCode<a class="headerlink" href="#installing-vscode" title="Permalink to this headline"></a></h3>
+<p>You can download Visual Studio Code (VSCode) at <a class="reference external" href="https://code.visualstudio.com/Download">https://code.visualstudio.com/Download</a>.
+It is free (see image below).</p>
+<a class="reference internal image-reference" href="_images/VSCode_Download.png"><img alt="Downloading PyCharm" class="align-center" src="_images/VSCode_Download.png" style="width: 500px; height: 294px;" /></a>
+<p>When installing VSCode, select the following options:</p>
+<ul class="simple">
+<li><p>Register Code as an editor for supported file types</p></li>
+<li><p>Add to PATH (requires shell restart)</p></li>
+</ul>
+<a class="reference internal image-reference" href="_images/VSCode_Install_Options.png"><img alt="VSCode Options" class="align-center" src="_images/VSCode_Install_Options.png" style="width: 500px; height: 356px;" /></a>
+<p>After installing VSCode, you’ll need to restart your computer.</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="manually_flying.html" class="btn btn-neutral float-left" title="Manually Flying" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="programming_sdk_2_0.html" class="btn btn-neutral float-right" title="Programming Using the Tello SDK 2.0" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, MIT-NEET Autonomous Machines.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

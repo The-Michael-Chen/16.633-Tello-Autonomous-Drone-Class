@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tello Edu Overview &mdash; 16.633 Autonomous Machines 1.0.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/clipboard.min.js"></script>
+        <script src="_static/copybutton.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Manually Flying" href="manually_flying.html" />
+    <link rel="prev" title="16.633 Autonomous Machines’ Documentation" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> 16.633 Autonomous Machines
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Tello Edu Overview</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Tello Edu Overview</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#introduction">1 Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#major-components">2 Major Components</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#power-button">3 Power Button</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#status-indicator-camera">4 Status Indicator/Camera</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#status-indicator">4.1 Status Indicator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#camera">4.2 Camera</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#removing-replacing-battery">5 Removing/Replacing Battery</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#removing-battery">5.1 Removing Battery</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#replacing-battery">5.2 Replacing Battery</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#removing-attaching-propeller-guards">6 Removing/Attaching Propeller Guards</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#removing-a-propeller-guard">6.1 Removing a Propeller Guard</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#attaching-a-propeller-guard">6.2 Attaching a Propeller Guard</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#removing-attaching-propellers">7 Removing/Attaching Propellers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#propeller-types">7.1 Propeller Types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#location-on-tello">7.2 Location on Tello</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#removing">7.3 Removing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#attaching">7.4 Attaching</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Exercise 01</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="manually_flying.html">Manually Flying</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Exercise 02</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="installing_python_pycharm.html">Installing Python and PyCharm/VSCode</a></li>
+<li class="toctree-l1"><a class="reference internal" href="programming_sdk_2_0.html">Programming Using the Tello SDK 2.0</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Exercise 03</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="intro_image_computations_part1.html">Introduction to Image Computations: Object Tracking Part 1</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Exercise 04</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="intro_image_computations_part2.html">Introduction to Image Computations: Object Tracking Part 2</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">User Manuals and Specifications</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="tello_edu_specs.html">Tello Edu Specifications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tello_user_manual.html">Tello User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tello_sdk_2_0_user_guide.html">Tello SDK 2.0 User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="td1_controller.html">Td1 Controller Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="batteries_charging.html">Batteries/Charging</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">16.633 Autonomous Machines</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Tello Edu Overview</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="tello-edu-overview">
+<h1>Tello Edu Overview<a class="headerlink" href="#tello-edu-overview" title="Permalink to this headline"></a></h1>
+<section id="introduction">
+<h2>1 Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline"></a></h2>
+<a class="reference internal image-reference" href="_images/Tello_Edu_Image_01.png"><img alt="Tello Edu" class="align-center" src="_images/Tello_Edu_Image_01.png" style="width: 492px; height: 300px;" /></a>
+<p>The <strong>Tello Edu</strong> is a small indoor/outdoor quadcopter with a <strong>vision positioning system</strong> and <strong>onboard camera</strong>. Its vision positioning system and embedded flight controller allows
+it to hover in place, receive incremental motion commands, and allow the user to set its speed. In addition to these set commands, the user can read the current speed, access the current
+battery level, access the current flight time, and capture live photos/video. For more details on the Tello Edu’s specifications, please see <a class="reference internal" href="tello_edu_specs.html"><span class="doc">Tello Edu Specifications</span></a>.</p>
+<a class="reference internal image-reference" href="_images/Tello_Features_Snapshot.png"><img alt="Tello Features" class="align-center" src="_images/Tello_Features_Snapshot.png" style="width: 500px; height: 409px;" /></a>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Ryze Robotics sells both the Tello and Tello Edu drone. The Tello Edu firmware has more capabilities for handling multiple drones when compared with the Tello firmware.
+Ryze Robotics and DJI have partnered to sell the Tello Edu drone; hence, the name DJI Tello Edu drone.</p>
+</div>
+</section>
+<section id="major-components">
+<h2>2 Major Components<a class="headerlink" href="#major-components" title="Permalink to this headline"></a></h2>
+<a class="reference internal image-reference" href="_images/Tello_Edu_Components.png"><img alt="Tello Edu Components" class="align-center" src="_images/Tello_Edu_Components.png" style="width: 533px; height: 300px;" /></a>
+<p>The Tello Edu has the following major components:</p>
+<ol class="arabic simple">
+<li><p>Propellers</p></li>
+<li><p>Motors</p></li>
+<li><p>Status Indicator</p></li>
+<li><p>Camera</p></li>
+<li><p>Power Button</p></li>
+<li><p>Antennas</p></li>
+<li><p>Vision Positioning System</p></li>
+<li><p>Battery</p></li>
+<li><p>Micro USB Port</p></li>
+<li><p>Propeller Guards</p></li>
+</ol>
+<p>To manually fly the Tello as discussed in Exercise 1, you’ll need to</p>
+<ol class="arabic simple">
+<li><p>Turn the Tello on/off.</p></li>
+<li><p>Have an awareness of the status as given by Status Indicator.</p></li>
+<li><p>Have an awareness of the video stream from the camera.</p></li>
+<li><p>Replace the battery.</p></li>
+<li><p>Reattach the propeller guard(s) if they fall off accidentally due to a crash.</p></li>
+<li><p>Remove/reattach the propeller guards if the IMU requires recalibration.</p></li>
+<li><p>Replace a propeller if it is damaged due to a crash.</p></li>
+</ol>
+</section>
+<section id="power-button">
+<h2>3 Power Button<a class="headerlink" href="#power-button" title="Permalink to this headline"></a></h2>
+<a class="reference internal image-reference" href="_images/Power_Button.png"><img alt="Power Button" class="align-center" src="_images/Power_Button.png" style="width: 500px; height: 221px;" /></a>
+<ol class="arabic simple">
+<li><p>Quickly press/release the power button to turn the Tello on.</p></li>
+<li><p>Quickly press/release the power button to turn the Tello off.</p></li>
+</ol>
+</section>
+<section id="status-indicator-camera">
+<h2>4 Status Indicator/Camera<a class="headerlink" href="#status-indicator-camera" title="Permalink to this headline"></a></h2>
+<section id="status-indicator">
+<h3>4.1 Status Indicator<a class="headerlink" href="#status-indicator" title="Permalink to this headline"></a></h3>
+<a class="reference internal image-reference" href="_images/Status_Indicator.png"><img alt="Camera/Status Indicator" class="align-center" src="_images/Status_Indicator.png" style="width: 500px; height: 192px;" /></a>
+<p>With a fully charged battery, after turning on the Tello, the status indicator should flash the following sequence:</p>
+<ol class="loweralpha simple">
+<li><p>Green - 1x</p></li>
+<li><p>Red - 5x</p></li>
+<li><p>Green-White - 1x</p></li>
+<li><p>Red-Green-Yellow - 3x</p></li>
+<li><p>Once this sequence has completed, your Tello should flash yellow (quickly), and during this period you can connect to your Tello via WiFi.</p></li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If the status indicator flashes red, the battery is low, and you should replace the battery with a fully charged one before flying.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If the status indicator does not flash at all, make sure the battery is fully charged and placed correctly inside the Tello.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>See the <a class="reference internal" href="tello_user_manual.html"><span class="doc">Tello User Manual</span></a> for more details on how to determine the Tello status.</p>
+</div>
+</section>
+<section id="camera">
+<h3>4.2 Camera<a class="headerlink" href="#camera" title="Permalink to this headline"></a></h3>
+<p>The live video stream from the camera will appear on your WiFi enabled mobile device or computer.</p>
+</section>
+</section>
+<section id="removing-replacing-battery">
+<h2>5 Removing/Replacing Battery<a class="headerlink" href="#removing-replacing-battery" title="Permalink to this headline"></a></h2>
+<a class="reference internal image-reference" href="_images/Remove_Replace_Battery.png"><img alt="Power Button" class="align-center" src="_images/Remove_Replace_Battery.png" style="width: 500px; height: 330px;" /></a>
+<section id="removing-battery">
+<h3>5.1 Removing Battery<a class="headerlink" href="#removing-battery" title="Permalink to this headline"></a></h3>
+<ol class="arabic simple">
+<li><p>Firmly grasp the notches located at the bottom of the battery.</p></li>
+<li><p>Pull the battery away from the Tello.</p></li>
+</ol>
+</section>
+<section id="replacing-battery">
+<h3>5.2 Replacing Battery<a class="headerlink" href="#replacing-battery" title="Permalink to this headline"></a></h3>
+<ol class="arabic simple">
+<li><p>Slide the battery into the Tello until you feel a slight snap.</p></li>
+<li><p>Make sure the bottom edge of the battery is flush with the rear of the Tello.</p></li>
+</ol>
+</section>
+</section>
+<section id="removing-attaching-propeller-guards">
+<h2>6 Removing/Attaching Propeller Guards<a class="headerlink" href="#removing-attaching-propeller-guards" title="Permalink to this headline"></a></h2>
+<a class="reference internal image-reference" href="_images/Propeller_Guards.png"><img alt="Propeller Guards" class="align-center" src="_images/Propeller_Guards.png" style="width: 500px; height: 334px;" /></a>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The steps below minimize the stresses on the Tello motor arms when removing the guards.
+You can perform these steps with either the left or right hand.</p>
+</div>
+<section id="removing-a-propeller-guard">
+<h3>6.1 Removing a Propeller Guard<a class="headerlink" href="#removing-a-propeller-guard" title="Permalink to this headline"></a></h3>
+<ol class="arabic simple">
+<li><p>Grasp the Tello motor arm with your left thumb and left fore-finger near the propeller guard. Try not to squeeze the Tello motor arm too tightly.</p></li>
+<li><p>Place your right thumb on the propeller guard release tab, your right fore-finger on the propeller guard’s mid-frame, and your right index-finger on the antenna.</p></li>
+<li><p>Gently press the release tab with your right thumb and the propeller guard will pop off.</p></li>
+</ol>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>DO NOT use excessive force when removing a propeller guard as doing so may damage the Tello motor arm.</p>
+</div>
+</section>
+<section id="attaching-a-propeller-guard">
+<h3>6.2 Attaching a Propeller Guard<a class="headerlink" href="#attaching-a-propeller-guard" title="Permalink to this headline"></a></h3>
+<ol class="arabic simple">
+<li><p>Grasp the Tello motor arm with your left thumb and left fore-finger near the propeller guard. Try not to squeeze the Tello motor arm too tightly.</p></li>
+<li><p>Hold the propeller guard with your right fore-finger on the propeller guard’s mid-frame and your index-finger supporting from the bottom.</p></li>
+<li><p>Press the propeller guard onto propeller guard post, making sure the notches on the guard post pop inside the slots on the propeller guard. You should hear a slight pop. Slightly jiggle the propeller guard to
+make sure its firmly attached.</p></li>
+</ol>
+</section>
+</section>
+<section id="removing-attaching-propellers">
+<h2>7 Removing/Attaching Propellers<a class="headerlink" href="#removing-attaching-propellers" title="Permalink to this headline"></a></h2>
+<section id="propeller-types">
+<h3>7.1 Propeller Types<a class="headerlink" href="#propeller-types" title="Permalink to this headline"></a></h3>
+<a class="reference internal image-reference" href="_images/Propeller_Types01.png"><img alt="Propeller Types" class="align-center" src="_images/Propeller_Types01.png" style="width: 500px; height: 318px;" /></a>
+<p>In order to move foward/backward and turn clockwise/counter-clockwise, a quadcopter utilzes two types of propellers that spin in opposite directions. To help you identify
+these two types, the Tello has one type with two raised embossed arcs near the center (<strong>Marked Propeller</strong>) and another type with no embossed arcs (<strong>Umarked Propeller</strong>).</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>If you incorrectly attach the propellers on the Tello, it will fly erratically and certainly crash, so be careful!!!</p>
+</div>
+</section>
+<section id="location-on-tello">
+<h3>7.2 Location on Tello<a class="headerlink" href="#location-on-tello" title="Permalink to this headline"></a></h3>
+<a class="reference internal image-reference" href="_images/Propeller_Types02.png"><img alt="Propeller Types" class="align-center" src="_images/Propeller_Types02.png" style="width: 500px; height: 491px;" /></a>
+<p>With the Tello lying horizontally and its front facing away from you (see image above), the motors in the top-left and bottom-right rotate clockwise, whereas the motors in the top-right and
+bottom-left rotate counter-clockwise. If you look carefully at these two types of propellers, you’ll notice that to achieve lift, the <strong>marked propellers</strong> must be placed in the top-left
+and bottom-right (undergoing a clockwise rotation), whereas the <strong>unmarked propellers</strong> must be placed in the top-right and bottom-left (undergoing a counter-clockwise rotation).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Marked Propreller</dt>
+<dd class="field-odd"><p>⟹ clockwise rotation</p>
+</dd>
+<dt class="field-even">Unmarked Propeller</dt>
+<dd class="field-even"><p>⟹ counter-clockwise rotation</p>
+</dd>
+</dl>
+<a class="reference internal image-reference" href="_images/Propeller_Types03.png"><img alt="Propeller Types" class="align-center" src="_images/Propeller_Types03.png" style="width: 500px; height: 367px;" /></a>
+<p>If you look carefully at the propeller guard posts for the <strong>marked propellers</strong>, you’ll see a small raised embossed line (although it may be difficult to see).</p>
+<div class="admonition danger">
+<p class="admonition-title">Danger</p>
+<p>Never interchange the locations of the <strong>marked propellers</strong> and <strong>unmarked propellers</strong> as you may damage the Tello when attempting to fly.</p>
+</div>
+</section>
+<section id="removing">
+<h3>7.3 Removing<a class="headerlink" href="#removing" title="Permalink to this headline"></a></h3>
+<a class="reference internal image-reference" href="_images/Propeller_Remove.png"><img alt="Propeller Removal" class="align-center" src="_images/Propeller_Remove.png" style="width: 500px; height: 537px;" /></a>
+<dl class="field-list simple">
+<dt class="field-odd">Step 1</dt>
+<dd class="field-odd"><p>When removing a propeller, insert the fork of the <strong>propeller removal tool</strong> between the motor and the propreller cap.</p>
+</dd>
+<dt class="field-even">Step 2</dt>
+<dd class="field-even"><p>Once inserted, use the propeller removal tool as a lever, and gently press down on the tip of removal tool using the motor as a fulcrum.</p>
+</dd>
+<dt class="field-odd">Step 3</dt>
+<dd class="field-odd"><p>Press slowly and gently, and the propeller will slide off.</p>
+</dd>
+</dl>
+<div class="admonition caution">
+<p class="admonition-title">Caution</p>
+<p>Always remove the propellers using the propeller removal tool. DO NOT remove the propellers by hand as doing so may damage the motors.</p>
+</div>
+</section>
+<section id="attaching">
+<h3>7.4 Attaching<a class="headerlink" href="#attaching" title="Permalink to this headline"></a></h3>
+<a class="reference internal image-reference" href="_images/Propeller_Types03.png"><img alt="Propeller Types" class="align-center" src="_images/Propeller_Types03.png" style="width: 500px; height: 367px;" /></a>
+<ul class="simple">
+<li><p>Attach marked propellers on the motors with marked propeller posts.</p></li>
+<li><p>Mount unmarked propellers on the motors with unmarked propeller posts.</p></li>
+<li><p>When attaching, gently press down, and ensure the gap between the bottom of the propeller cap and the motor is no larger than needed to insert the propeller removal tool.</p></li>
+</ul>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="16.633 Autonomous Machines’ Documentation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="manually_flying.html" class="btn btn-neutral float-right" title="Manually Flying" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, MIT-NEET Autonomous Machines.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

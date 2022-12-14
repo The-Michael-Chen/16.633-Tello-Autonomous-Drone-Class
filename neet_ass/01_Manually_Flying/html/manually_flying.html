@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Manually Flying &mdash; 16.633 Autonomous Machines 1.0.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/clipboard.min.js"></script>
+        <script src="_static/copybutton.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Tello Edu Specifications" href="tello_edu_specs.html" />
+    <link rel="prev" title="Tello Edu Overview" href="tello_edu_overview.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> 16.633 Autonomous Machines
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Tello Edu Overview</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="tello_edu_overview.html">Tello Edu Overview</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Exercise 01</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Manually Flying</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#safety-guidelines">1 Safety Guidelines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#install-tello-app">2 Install Tello app</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#joystick-controls">2.1 Joystick Controls</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#telemetry">2.2 Telemetry</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#auto-flight">2.3 Auto Flight</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#settings">2.4 Settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#playback-photo-video">2.5 Playback/Photo/Video</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#tello-name">3 Tello Name</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#pre-flight-checklist">4 Pre-Flight Checklist</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#flying-with-your-mobile-device">5 Flying with your Mobile Device</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#flying-with-the-t1d-controller">6 Flying with the T1d Controller</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#controller-overview">6.1 Controller Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#bluetooth-name">6.2 Bluetooth Name</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#connect-mobile-device-to-controller">6.3 Connect Mobile Device to Controller</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#connecting-mobile-device-to-tello">6.4 Connecting Mobile Device to Tello</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">User Manuals and Specifications</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="tello_edu_specs.html">Tello Edu Specifications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tello_user_manual.html">Tello User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tello_sdk_2_0_user_guide.html">Tello SDK 2.0 User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="td1_controller.html">Td1 Controller Manual</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">16.633 Autonomous Machines</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Manually Flying</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="manually-flying">
+<h1>Manually Flying<a class="headerlink" href="#manually-flying" title="Permalink to this headline"></a></h1>
+<section id="safety-guidelines">
+<h2>1 Safety Guidelines<a class="headerlink" href="#safety-guidelines" title="Permalink to this headline"></a></h2>
+<p>In general, the Tello is safe to fly with its propeller guards firmly attached, as these guards, for the most part, minimize the possibility of the propellers touching you or any object.
+In addition to propeller guards, the Tello has crash detection capabilities, and it automatically shuts off if its motion is impeded. The use of propeller guards and automatic crash
+detection, coupled with the Tello’s light weight, makes it generally safe to fly.</p>
+<p>However, since the propeller guards are not full-proof and will not prevent eye injury, you <strong>must wear eye protection</strong> (either eyeglasses or safety goggles) at all times. In addition to always wearing eye protection,
+you also must adhere to the following safety guidelines:</p>
+<div class="admonition caution">
+<p class="admonition-title">Caution</p>
+<ol class="loweralpha simple">
+<li><p>Always wear safety glasses when near a flying Tello.</p></li>
+<li><p>Always fly your Tello with propeller guards, either the standard guards or the CYNOVA propeller cage.</p></li>
+<li><p>Do not touch rotating propellers.</p></li>
+<li><p>Always fly your Tello in the designated areas.</p></li>
+<li><p>Always keep alert and mindful of others when flying your Tello.</p></li>
+<li><p>Always keep your Tello within visual sight. For instance, never fly your Tello behind objects that block direct sight of your Tello’s location.</p></li>
+<li><p>Do not answer incoming calls or text messages or do anything that may distract you while flying your Tello.</p></li>
+<li><p>Do not fly above reflective surfaces as this may affect the performance of the Vision Positioning System (camera and IR sensor located on the bottom of the Tello).</p></li>
+<li><p>The batteries get hot when flying your Tello, so take care when touching them or the bottom of your Tello.</p></li>
+<li><p>When a low battery warning is displayed in the Tello app, land the aircraft promptly.</p></li>
+<li><p>If a critical warning appears, land your Tello immediately.</p></li>
+<li><p>If a motor is stuck and unable to rotate freely, land the Tello immediately.</p></li>
+<li><p>If your Tello crashes or has a violent impact, make sure to carefully check every component before flying again (especially the propellers and propeller guards).</p></li>
+<li><p>If your Tello sustains damage to its propellers, propeller guards, or frame, please inform your instructor.</p></li>
+<li><p>If anything doesn’t seem right about your Tello, your Tello makes a strang noise or it isn’t flying properly, please inform your instructor.</p></li>
+</ol>
+</div>
+<div class="admonition attention">
+<p class="admonition-title">Attention</p>
+<p>Please indicate that you have read and accept the above safety guidelines by submitting the form on this <a class="reference external" href="https://forms.gle/DHLWvFB6qfKvZSYF8">link</a>.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Failure to follow these guidelines may restrict or prohibit your use of the Tello drones in 16.633.</p>
+</div>
+<div class="admonition attention">
+<p class="admonition-title">Attention</p>
+<p>You can download the entire <a class="reference download internal" download="" href="_downloads/64032a1669119160457e90a6c78dd58e/Tello_Disclaimer_Safety_Guidelines_v1_0.pdf"><code class="xref download docutils literal notranslate"><span class="pre">Tello</span> <span class="pre">Disclaimer</span> <span class="pre">and</span> <span class="pre">Safety</span> <span class="pre">Guidelines</span></code></a> by clicking this link.</p>
+</div>
+</section>
+<section id="install-tello-app">
+<h2>2 Install Tello app<a class="headerlink" href="#install-tello-app" title="Permalink to this headline"></a></h2>
+<a class="reference internal image-reference" href="_images/Tello_Tello-Edu_Apps.png"><img alt="Tello and Tello Edu apps" class="align-center" src="_images/Tello_Tello-Edu_Apps.png" style="width: 593px; height: 288px;" /></a>
+<p>To manually fly the Tello, you must install the <strong>Tello app</strong> (not the <strong>Tello Edu app</strong>) on your MacOS or Android enabled mobile device with touch screen and WiFi capabilities.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Please don’t confuse the Tello app with the Tello Edu app (see icon images above). Although both apps allow you to manually fly the Tello, the Tello app is more appropriate for
+our purposes.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">MacOS</dt>
+<dd class="field-odd"><p>⟹ visit the App Store on your mobile device to download the <a class="reference external" href="https://apps.apple.com/app/tello/id1330559633">Tello app (MacOS)</a> (operating system compatibility: iOS v9.0 or later).</p>
+</dd>
+<dt class="field-even">Android</dt>
+<dd class="field-even"><p>⟹ visit the Google Play Store on your mobile device to download the <a class="reference external" href="https://play.google.com/store/apps/details?id=com.ryzerobotics.tello&amp;hl=en_US&amp;gl=US">Tello app (Android)</a>
+(operating system compatibility: Android v4.4 or later).</p>
+</dd>
+</dl>
+<p>Once you have installed the Tello app on your mobile device, you can fly the Tello with your device’s <strong>touch screen</strong> or with the joysticks on the <strong>T1d GameSir controller</strong>.
+For this exercise, you will fly the Tello using both approaches.</p>
+<p>Before flying the Tello, you should familarize yourself with the following features of the Tello app:</p>
+<ol class="arabic simple">
+<li><p>Joystick Controls</p></li>
+<li><p>Telemetry</p></li>
+<li><p>Auto Flight</p></li>
+<li><p>Settings</p></li>
+<li><p>Playback/Photo/Video</p></li>
+</ol>
+<section id="joystick-controls">
+<h3>2.1 Joystick Controls<a class="headerlink" href="#joystick-controls" title="Permalink to this headline"></a></h3>
+<a class="reference internal image-reference" href="_images/Tello_Console02.png"><img alt="Joystick Controls" class="align-center" src="_images/Tello_Console02.png" style="width: 533px; height: 300px;" /></a>
+<ol class="loweralpha simple">
+<li><p>Left Joystick: Fly Up/Down</p></li>
+<li><p>Left Joystick: Turn Left/Right</p></li>
+<li><p>Right Joystick: Fly Forward/Backward</p></li>
+<li><p>Right Joystick: Fly Left/Right</p></li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If the joystick controls on your screen appear different than those given above, you may need to change the
+“Stick Mode” settings. If you have any questions about how to change this setting, please see your instructor.</p>
+</div>
+</section>
+<section id="telemetry">
+<h3>2.2 Telemetry<a class="headerlink" href="#telemetry" title="Permalink to this headline"></a></h3>
+<a class="reference internal image-reference" href="_images/Tello_Console03.png"><img alt="Telemetry" class="align-center" src="_images/Tello_Console03.png" style="width: 533px; height: 300px;" /></a>
+</section>
+<section id="auto-flight">
+<h3>2.3 Auto Flight<a class="headerlink" href="#auto-flight" title="Permalink to this headline"></a></h3>
+<a class="reference internal image-reference" href="_images/Tello_Console04.png"><img alt="Auto Flight" class="align-center" src="_images/Tello_Console04.png" style="width: 533px; height: 300px;" /></a>
+</section>
+<section id="settings">
+<h3>2.4 Settings<a class="headerlink" href="#settings" title="Permalink to this headline"></a></h3>
+<a class="reference internal image-reference" href="_images/Tello_Console05.png"><img alt="Settings" class="align-center" src="_images/Tello_Console05.png" style="width: 533px; height: 300px;" /></a>
+</section>
+<section id="playback-photo-video">
+<h3>2.5 Playback/Photo/Video<a class="headerlink" href="#playback-photo-video" title="Permalink to this headline"></a></h3>
+<a class="reference internal image-reference" href="_images/Tello_Console06.png"><img alt="Photo/Video" class="align-center" src="_images/Tello_Console06.png" style="width: 533px; height: 300px;" /></a>
+</section>
+</section>
+<section id="tello-name">
+<h2>3 Tello Name<a class="headerlink" href="#tello-name" title="Permalink to this headline"></a></h2>
+<a class="reference internal image-reference" href="_images/AM-00.png"><img alt="Tello AM-00" class="align-center" src="_images/AM-00.png" style="width: 565px; height: 393px;" /></a>
+<p>Your Tello has a WiFi name (TELLO-AM-XX) that you must use when connecting with your mobile device. This WiFi name consists of the characters “TELLO-” and the characters “AM-XX” which
+you’ll find on top of your Tello as illustrated above.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For our purposes, AM-XX is your Tello’s name, but you’ll see TELLO-AM-XX in your WiFi settings.
+If the label with your Tello’s name is damaged or missing, please inform your instructor.</p>
+</div>
+<p>For reference, your Tello may have any one of the following WiFi names:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>TELLO-AM-01</p></td>
+<td><p>TELLO-AM-07</p></td>
+</tr>
+<tr class="row-even"><td><p>TELLO-AM-02</p></td>
+<td><p>TELLO-AM-08</p></td>
+</tr>
+<tr class="row-odd"><td><p>TELLO-AM-03</p></td>
+<td><p>TELLO-AM-09</p></td>
+</tr>
+<tr class="row-even"><td><p>TELLO-AM-04</p></td>
+<td><p>TELLO-AM-10</p></td>
+</tr>
+<tr class="row-odd"><td><p>TELLO-AM-05</p></td>
+<td><p>TELLO-AM-11</p></td>
+</tr>
+<tr class="row-even"><td><p>TELLO-AM-06</p></td>
+<td><p>TELLO-AM-12</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="pre-flight-checklist">
+<h2>4 Pre-Flight Checklist<a class="headerlink" href="#pre-flight-checklist" title="Permalink to this headline"></a></h2>
+<p><span class="math notranslate nohighlight">\(\checkmark\)</span> Ensure the remote control device, mobile device, and flight battery are fully charged.</p>
+<p><span class="math notranslate nohighlight">\(\checkmark\)</span> Ensure the flight battery is mounted firmly.</p>
+<p><span class="math notranslate nohighlight">\(\checkmark\)</span> Ensure the propellers and propeller guards are in good condition and securely mounted and tightened.</p>
+<p><span class="math notranslate nohighlight">\(\checkmark\)</span> Ensure there is nothing obstructing the motors and the motors are functioning normally.</p>
+<p><span class="math notranslate nohighlight">\(\checkmark\)</span> Make sure the camera lens and Vision Positioning System sensors are clean.</p>
+<p><span class="math notranslate nohighlight">\(\checkmark\)</span> If prompted, follow the on-screen instructions to calibrate the Inertial Measurement Unit (IMU).</p>
+</section>
+<section id="flying-with-your-mobile-device">
+<h2>5 Flying with your Mobile Device<a class="headerlink" href="#flying-with-your-mobile-device" title="Permalink to this headline"></a></h2>
+<dl class="field-list">
+<dt class="field-odd">Step 1</dt>
+<dd class="field-odd"><p>Make sure your Tello has a fully charged battery, and also make sure your mobile device has been sufficiently charged.</p>
+</dd>
+<dt class="field-even">Step 2</dt>
+<dd class="field-even"><p>Turn on your Tello by pressing the power button. On a fully charged battery, your Tello status indicator should flash the following sequence:</p>
+<ol class="loweralpha simple">
+<li><p>Green - 1x</p></li>
+<li><p>Red - 5x</p></li>
+<li><p>Green-White - 1x</p></li>
+<li><p>Red-Green-Yellow - 3x</p></li>
+<li><p>Once this sequence has completed, your Tello should flash yellow (quickly), and during this period you can connect to your Tello via WiFi.</p></li>
+</ol>
+</dd>
+<dt class="field-odd">Step 3</dt>
+<dd class="field-odd"><p>Place your Tello on a flat surface.</p>
+</dd>
+<dt class="field-even">Step 4</dt>
+<dd class="field-even"><p>Open Settings on your mobile device and the click the WiFi tab.</p>
+</dd>
+<dt class="field-odd">Step 5</dt>
+<dd class="field-odd"><p>Under Networks, you will see the available WiFi devices in your area. Select the network under your Tello’s WiFi name (Tello-AM-XX).</p>
+<div class="admonition caution">
+<p class="admonition-title">Caution</p>
+<p>Make sure to connect to your specific Tello, as connecting to another Tello may cause physical harm to yourself or to the user of the other Tello.</p>
+</div>
+</dd>
+<dt class="field-even">Step 6</dt>
+<dd class="field-even"><p>Now open the Tello app. Once open, the status indicator should flash green (slowly) and the live camera view should appear on your mobile device’s screen.</p>
+<div class="admonition attention">
+<p class="admonition-title">Attention</p>
+<p>If the view you see isn’t the actual view from your Tello’s camera, then its the view of someone else’s Tello. If this case arises, immediately close the Tello app and
+return to Step 4 above.</p>
+</div>
+</dd>
+<dt class="field-odd">Step 7</dt>
+<dd class="field-odd"><p>Press the Auto Takeoff and Land button and a pop-up screen will appear. In this screen, slide the bar to the right for auto take off. Your Tello should take off upward to approximately
+1 meter above the take off location, and it should hover with little movement. If your Tello drifts to the side, we may need to recalibrate its IMU. Please see your instructor if this happens.</p>
+<blockquote>
+<div><a class="reference internal image-reference" href="_images/Auto_Take_Off_Land.png"><img alt="Auto Take Off and Land" class="align-center" src="_images/Auto_Take_Off_Land.png" style="width: 500px; height: 282px;" /></a>
+</div></blockquote>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If your Tello drifts from side-to-side, you may need to use a non-reflective surface such as a tarp, or you may need to recalibrate the IMU. If you haven’t already learned how to calibrate the IMU,
+please see your instructor.</p>
+</div>
+</dd>
+<dt class="field-even">Step 8</dt>
+<dd class="field-even"><p>Use the joysticks on your mobile device to fly your Tello. Follow all the safety guidelines and enjoy!!!</p>
+</dd>
+</dl>
+</section>
+<section id="flying-with-the-t1d-controller">
+<h2>6 Flying with the T1d Controller<a class="headerlink" href="#flying-with-the-t1d-controller" title="Permalink to this headline"></a></h2>
+<section id="controller-overview">
+<h3>6.1 Controller Overview<a class="headerlink" href="#controller-overview" title="Permalink to this headline"></a></h3>
+<a class="reference internal image-reference" href="_images/Gamesir_T1d_01.png"><img alt="T1d Controller Buttons/Functions" class="align-center" src="_images/Gamesir_T1d_01.png" style="width: 439px; height: 665px;" /></a>
+<p>The T1d controller by GameSir has been designed specifically for the Tello drone, and it connects to your mobile device via Bluetooth 4.0. It works with
+Apple devices (version IOS8.0 or above) and Android devices (version 4.3 or above). The T1d automatically identifies whether it is connected to an Apple
+or Android device, so you do not need to manually set this parameter.</p>
+<p>As illustrated in the image above, the T1d has several dedicated buttons plus
+several customizable buttons. For this portion of your flying excercise, you should first become familiar with the location/functionality of the following
+buttons as well as the location of the charging port:</p>
+<ol class="loweralpha simple">
+<li><p>power button</p></li>
+<li><p>charging port</p></li>
+<li><p>power display</p></li>
+<li><p>left joystick, and</p></li>
+<li><p>right joystick.</p></li>
+</ol>
+<a class="reference internal image-reference" href="_images/Gamesir_T1d_02.png"><img alt="T1d Controller Buttons/Functions" class="align-center" src="_images/Gamesir_T1d_02.png" style="width: 500px; height: 251px;" /></a>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Click you can click this link to download the <a class="reference download internal" download="" href="_downloads/41b443aa95fceaa8592a6b7862fb98cf/T1d_Operating_Manual_2020EN.pdf"><code class="xref download docutils literal notranslate"><span class="pre">T1d</span> <span class="pre">operating</span> <span class="pre">manual</span></code></a>.</p>
+</div>
+</section>
+<section id="bluetooth-name">
+<h3>6.2 Bluetooth Name<a class="headerlink" href="#bluetooth-name" title="Permalink to this headline"></a></h3>
+<a class="reference internal image-reference" href="_images/T1d_Name.png"><img alt="T1d Bluetooth Name" class="align-center" src="_images/T1d_Name.png" style="width: 500px; height: 325px;" /></a>
+<p>Each T1d controller has a unique Bluetooth name, such as GameSir-T1d-XXXX. As illustrated above, the controller’s Bluetooth name its located on top of the cell phone carrier.</p>
+<p>For reference, your controller may have any one of the following Bluetooth names:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>Gamesir-T1d-22A8</p></td>
+<td><p>Gamesir-T1d-236A</p></td>
+</tr>
+<tr class="row-even"><td><p>Gamesir-T1d-22A9</p></td>
+<td><p>Gamesir-T1d-236C</p></td>
+</tr>
+<tr class="row-odd"><td><p>Gamesir-T1d-22B0</p></td>
+<td><p>Gamesir-T1d-23E6</p></td>
+</tr>
+<tr class="row-even"><td><p>Gamesir-T1d-22B2</p></td>
+<td><p>Gamesir-T1d-23EA</p></td>
+</tr>
+<tr class="row-odd"><td><p>Gamesir-T1d-22B4</p></td>
+<td><p>Gamesir-T1d-23EE</p></td>
+</tr>
+<tr class="row-even"><td><p>Gamesir-T1d-235E</p></td>
+<td><p>Gamesir-T1d-23F1</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If your controller does not have a label, please inform your instructor.</p>
+</div>
+</section>
+<section id="connect-mobile-device-to-controller">
+<h3>6.3 Connect Mobile Device to Controller<a class="headerlink" href="#connect-mobile-device-to-controller" title="Permalink to this headline"></a></h3>
+<ol class="arabic simple">
+<li><p>First, note your T1d controller’s Bluetooth name.</p></li>
+<li><p>Next, enable Bluetooth on your mobile device.</p></li>
+<li><p>Press the power button on the T1d for about 1 second to turn it on. If successful, the blue power display LEDs should flash, and the X-Y-A-B buttons should light up.</p></li>
+<li><p>Open the Tello app.</p></li>
+<li><p>Press the Settings button on the Tello app control console.</p></li>
+<li><p>Open up the Bluetooth Controller Settings.</p></li>
+<li><p>In the list of T1d controllers, select your T1d controller.</p></li>
+<li><p>After successfully connecting, the power display LEDs should stop flashing and they should remain lit.</p></li>
+<li><p>Now you need to connect your mobile device to your Tello.</p></li>
+</ol>
+</section>
+<section id="connecting-mobile-device-to-tello">
+<h3>6.4 Connecting Mobile Device to Tello<a class="headerlink" href="#connecting-mobile-device-to-tello" title="Permalink to this headline"></a></h3>
+<ol class="arabic simple">
+<li><p>Follow the steps listed in Section 5 to connect your mobile device to your Tello.</p></li>
+<li><p>Once connected, you can now fly your Tello with the T1d controller. You can automatically take off and automatically land by simultaneously pressing the R2+Y buttons on the T1d controller. Enjoy!!!</p></li>
+</ol>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="tello_edu_overview.html" class="btn btn-neutral float-left" title="Tello Edu Overview" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="tello_edu_specs.html" class="btn btn-neutral float-right" title="Tello Edu Specifications" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, MIT-NEET Autonomous Machines.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

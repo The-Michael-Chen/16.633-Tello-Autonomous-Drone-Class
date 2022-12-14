@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Introduction to Image Computations: Object Tracking Part 2 &mdash; 16.633 Autonomous Machines 1.0.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/clipboard.min.js"></script>
+        <script src="_static/copybutton.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Introduction to Image Computations: Object Tracking Part 3" href="intro_image_computations_part3.html" />
+    <link rel="prev" title="Introduction to Image Computations: Object Tracking Part 1" href="intro_image_computations_part1.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> 16.633 Autonomous Machines
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Tello Edu Overview</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="tello_edu_overview.html">Tello Edu Overview</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Exercise 01</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="manually_flying.html">Manually Flying</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Exercise 02</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="installing_python_pycharm.html">Installing Python and PyCharm/VSCode</a></li>
+<li class="toctree-l1"><a class="reference internal" href="programming_sdk_2_0.html">Programming Using the Tello SDK 2.0</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Exercise 03</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="intro_image_computations_part1.html">Introduction to Image Computations: Object Tracking Part 1</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Exercise 04</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Introduction to Image Computations: Object Tracking Part 2</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#introduction">1 Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#detecting-tags-using-the-drone-camera">2 Detecting Tags Using the Drone Camera</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#d-to-2d-projection-with-april-tags">3 3D to 2D Projection with April Tags</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#next-time">4 Next Time</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Exercise 05</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="intro_image_computations_part3.html">Introduction to Image Computations: Object Tracking Part 3</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Exercise 06</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="drone_control_part1.html">Drone Control Part 1</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Exercise 07</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="feature_tracking.html">Feature Tracking</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Exercise 08</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="autonomy_stack_integration.html">Autonomy Stack Integration</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">User Manuals and Specifications</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="tello_edu_specs.html">Tello Edu Specifications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tello_user_manual.html">Tello User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tello_sdk_2_0_user_guide.html">Tello SDK 2.0 User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="td1_controller.html">Td1 Controller Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="batteries_charging.html">Batteries/Charging</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">16.633 Autonomous Machines</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Introduction to Image Computations: Object Tracking Part 2</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="introduction-to-image-computations-object-tracking-part-2">
+<h1>Introduction to Image Computations: Object Tracking Part 2<a class="headerlink" href="#introduction-to-image-computations-object-tracking-part-2" title="Permalink to this headline"></a></h1>
+<dl class="field-list simple">
+<dt class="field-odd">Author</dt>
+<dd class="field-odd"><p>Dominic Maggio</p>
+</dd>
+</dl>
+<section id="introduction">
+<h2>1 Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline"></a></h2>
+<p>Last time we learned about a projection model for transforming 3D points in the world to pixels in a 2D image plane.
+We also learned how to identify the location of an object (an apriltag) in the image plane. Today, we will be combining these two
+concepts and putting them on our drones.</p>
+<p>We already know that given the focal length of a camera, the known size of the apriltag, and the 2D location of the tag in the image,
+it should be possible to find the 3D location of the tag with respect to the camera frame. The apriltags library we installed last time
+does that computation for us and we will test it today using the drone camera. In addition, if we know the location in the 3D world of
+a target with respect to one of the apriltags (for example if I tell you the target is 0.5m below the tag), then you should be able to
+compute the location of that target in the image plane. We will do this as part two of today’s exercise.</p>
+<p>Note that next week’s exercise will be shorter, so you will have time next week to finish up if you cannot finish this week.</p>
+</section>
+<section id="detecting-tags-using-the-drone-camera">
+<h2>2 Detecting Tags Using the Drone Camera<a class="headerlink" href="#detecting-tags-using-the-drone-camera" title="Permalink to this headline"></a></h2>
+<p>Connect your laptop to your drone’s wifi network and run the code <code class="docutils literal notranslate"><span class="pre">student_exercise2.py</span></code> (see below). The code will stream images from the drone’s camera and run the
+apriltag detector we used last time on the images. Point the drone at different tags and you should be able to visualize the tags not only
+being detected but also being labeled with their tag number. Notice that since we provide the focal length and the size of the tags, we are
+also able to determine the location of the 3D location of the tags. Note that the location of the tags is defined with respect to the coordinate
+system of the camera (see last week’s notes for a reminder about the camera coordinate system).</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># code partially adapted from https://pypi.org/project/pupil-apriltags/</span>
+<span class="c1"># and https://pyimagesearch.com/2020/11/02/apriltag-with-python/</span>
+<span class="kn">from</span> <span class="nn">djitellopy</span> <span class="kn">import</span> <span class="n">Tello</span>
+<span class="kn">import</span> <span class="nn">cv2</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="kn">import</span> <span class="nn">cv2</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">from</span> <span class="nn">pupil_apriltags</span> <span class="kn">import</span> <span class="n">Detector</span>
+
+<span class="c1"># NOTE THAT THE 3D POSE OF TAGS IS WRT THE CAMERA FRAME!</span>
+
+<span class="c1">############ params ############</span>
+<span class="n">width</span> <span class="o">=</span> <span class="mi">640</span>  <span class="c1"># WIDTH OF THE IMAGE</span>
+<span class="n">height</span> <span class="o">=</span> <span class="mi">480</span>  <span class="c1"># HEIGHT OF THE IMAGE</span>
+
+<span class="c1"># intrinsic calibration</span>
+<span class="n">cx</span> <span class="o">=</span> <span class="n">width</span> <span class="o">/</span> <span class="mf">2.0</span>
+<span class="n">cy</span> <span class="o">=</span> <span class="n">height</span> <span class="o">/</span> <span class="mf">2.0</span>
+<span class="n">fx</span> <span class="o">=</span> <span class="mi">600</span>
+<span class="n">fy</span> <span class="o">=</span> <span class="mi">600</span>
+<span class="n">intrinsics</span> <span class="o">=</span> <span class="p">([</span><span class="n">fx</span><span class="p">,</span> <span class="n">fy</span><span class="p">,</span> <span class="n">cx</span><span class="p">,</span> <span class="n">cy</span><span class="p">])</span>
+<span class="n">K</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="n">fx</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="n">cx</span><span class="p">],</span>
+              <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">fy</span><span class="p">,</span> <span class="n">cy</span><span class="p">],</span>
+              <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">]])</span>
+
+<span class="c1"># tag size (m)</span>
+<span class="n">tag_size</span> <span class="o">=</span> <span class="mf">0.165</span>
+<span class="c1">###############################</span>
+
+<span class="c1"># CONNECT TO TELLO</span>
+<span class="n">tello</span> <span class="o">=</span> <span class="n">Tello</span><span class="p">()</span>
+<span class="n">tello</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">tello</span><span class="o">.</span><span class="n">for_back_velocity</span> <span class="o">=</span> <span class="mi">0</span> <span class="c1"># forward and backward velocity</span>
+<span class="n">tello</span><span class="o">.</span><span class="n">left_right_velocity</span> <span class="o">=</span> <span class="mi">0</span> <span class="c1"># left and right velocity</span>
+<span class="n">tello</span><span class="o">.</span><span class="n">up_down_velocity</span> <span class="o">=</span> <span class="mi">0</span> <span class="c1"># up and down velocity</span>
+<span class="n">tello</span><span class="o">.</span><span class="n">yaw_velocity</span> <span class="o">=</span> <span class="mi">0</span> <span class="c1"># yaw angular velocity</span>
+<span class="n">tello</span><span class="o">.</span><span class="n">speed</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="n">tello</span><span class="o">.</span><span class="n">streamon</span><span class="p">()</span>
+<span class="c1">########################</span>
+
+<span class="c1"># initialize detector</span>
+<span class="n">at_detector</span> <span class="o">=</span> <span class="n">Detector</span><span class="p">(</span><span class="n">families</span><span class="o">=</span><span class="s1">&#39;tag36h11&#39;</span><span class="p">,</span>
+                   <span class="n">nthreads</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                   <span class="n">quad_decimate</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>
+                   <span class="n">quad_sigma</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
+                   <span class="n">refine_edges</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                   <span class="n">decode_sharpening</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span>
+                   <span class="n">debug</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">get_point_below_tag</span><span class="p">(</span><span class="n">T_camera_tag</span><span class="p">,</span> <span class="n">meters_below</span><span class="p">,</span> <span class="n">K</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    given a 4x4 transform FROM the tag TO the camera,</span>
+<span class="sd">    compute the 3D location of a point meters_below the tag</span>
+<span class="sd">    and return the 2D location of that point in the image frame.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># get inverse transform</span>
+    <span class="n">T_tag_camera</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">T_camera_tag</span><span class="p">)</span>
+    <span class="c1"># find 3D location of point below the tag</span>
+    <span class="n">T_tag_camera</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span> <span class="o">-=</span> <span class="n">meters_below</span>
+    <span class="c1"># convert back to being wrt the camera frame</span>
+    <span class="n">T_camera_tag</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">T_tag_camera</span><span class="p">)</span>
+    
+    <span class="c1">###### TODO fill in here ##########</span>
+    <span class="c1"># compute the 2D location of the target point in the image plane</span>
+    <span class="c1"># hint: T_camera_tag[0:3,3:] is the 3D point of the target wrt the camera</span>
+    <span class="c1"># hint: don&#39;t forget to return a 2D point and not a 3D point</span>
+    <span class="k">pass</span>
+    <span class="c1">##################################</span>
+
+<span class="k">def</span> <span class="nf">track_tags</span><span class="p">(</span><span class="n">img</span><span class="p">):</span>
+    <span class="n">img_gray</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BGR2GRAY</span><span class="p">)</span>
+    <span class="n">tags</span> <span class="o">=</span> <span class="n">at_detector</span><span class="o">.</span><span class="n">detect</span><span class="p">(</span><span class="n">img_gray</span><span class="p">,</span> <span class="n">estimate_tag_pose</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                              <span class="n">camera_params</span><span class="o">=</span><span class="n">intrinsics</span><span class="p">,</span> <span class="n">tag_size</span><span class="o">=</span><span class="n">tag_size</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;number of tags detected:&quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">tags</span><span class="p">))</span>
+    
+    <span class="c1"># loop over the AprilTag detection results</span>
+    <span class="k">for</span> <span class="n">tag</span> <span class="ow">in</span> <span class="n">tags</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;tag id:&quot;</span><span class="p">,</span> <span class="n">tag</span><span class="o">.</span><span class="n">tag_id</span><span class="p">)</span>
+    	<span class="c1"># extract the bounding box (x, y)-coordinates for the AprilTag</span>
+    	<span class="c1"># and convert each of the (x, y)-coordinate pairs to integers</span>
+        <span class="p">(</span><span class="n">ptA</span><span class="p">,</span> <span class="n">ptB</span><span class="p">,</span> <span class="n">ptC</span><span class="p">,</span> <span class="n">ptD</span><span class="p">)</span> <span class="o">=</span> <span class="n">tag</span><span class="o">.</span><span class="n">corners</span>
+        <span class="n">ptB</span> <span class="o">=</span> <span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">ptB</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="nb">int</span><span class="p">(</span><span class="n">ptB</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+        <span class="n">ptC</span> <span class="o">=</span> <span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">ptC</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="nb">int</span><span class="p">(</span><span class="n">ptC</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+        <span class="n">ptD</span> <span class="o">=</span> <span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">ptD</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="nb">int</span><span class="p">(</span><span class="n">ptD</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+        <span class="n">ptA</span> <span class="o">=</span> <span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">ptA</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="nb">int</span><span class="p">(</span><span class="n">ptA</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+    	<span class="c1"># draw the bounding box of the AprilTag detection</span>
+        <span class="n">cv2</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">ptA</span><span class="p">,</span> <span class="n">ptB</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="n">cv2</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">ptB</span><span class="p">,</span> <span class="n">ptC</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="n">cv2</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">ptC</span><span class="p">,</span> <span class="n">ptD</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="n">cv2</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">ptD</span><span class="p">,</span> <span class="n">ptA</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="mi">2</span><span class="p">)</span>
+    	<span class="c1"># draw the center (x, y)-coordinates of the AprilTag</span>
+        <span class="p">(</span><span class="n">cX</span><span class="p">,</span> <span class="n">cY</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">tag</span><span class="o">.</span><span class="n">center</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="nb">int</span><span class="p">(</span><span class="n">tag</span><span class="o">.</span><span class="n">center</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+        <span class="n">cv2</span><span class="o">.</span><span class="n">circle</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="p">(</span><span class="n">cX</span><span class="p">,</span> <span class="n">cY</span><span class="p">),</span> <span class="mi">5</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">),</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+    	<span class="c1"># draw the tag family on the image</span>
+        <span class="n">tagFamily</span> <span class="o">=</span> <span class="n">tag</span><span class="o">.</span><span class="n">tag_family</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span>
+        <span class="n">cv2</span><span class="o">.</span><span class="n">putText</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">tagFamily</span><span class="p">,</span> <span class="p">(</span><span class="n">ptA</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">ptA</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="mi">15</span><span class="p">),</span>
+    		<span class="n">cv2</span><span class="o">.</span><span class="n">FONT_HERSHEY_SIMPLEX</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="mi">2</span><span class="p">)</span>
+        
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;[INFO] tag family: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">tagFamily</span><span class="p">))</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;t: &quot;</span><span class="p">,</span> <span class="n">tag</span><span class="o">.</span><span class="n">pose_t</span><span class="p">)</span>
+        
+        <span class="c1">##### Detect point set distance below tag #####</span>
+        <span class="c1"># construct 4x4 transform matrix of the tags location wrt the camera frame</span>
+        <span class="n">T_camera_tag</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+        <span class="n">T_camera_tag</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.0</span>
+        <span class="n">T_camera_tag</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">:]</span> <span class="o">=</span> <span class="n">tag</span><span class="o">.</span><span class="n">pose_t</span>
+        <span class="n">T_camera_tag</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span><span class="mi">0</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="n">tag</span><span class="o">.</span><span class="n">pose_R</span>
+        
+        <span class="c1">###### TODO fill in here ##########</span>
+        <span class="c1">#px,py = get_point_below_tag(T_camera_tag, meters_below=0.5, K=K)</span>
+        <span class="c1"># Draw line from tag center to (px,py) on img. Hint, use cv2.line</span>
+        <span class="c1">###################################</span>
+        
+        <span class="n">cv2</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="s2">&quot;drone cam&quot;</span><span class="p">,</span> <span class="n">img</span><span class="p">)</span>
+        <span class="n">key</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">waitKey</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span>
+
+<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="c1"># GET THE IMAGE FROM TELLO</span>
+    <span class="n">frame_read</span> <span class="o">=</span> <span class="n">tello</span><span class="o">.</span><span class="n">get_frame_read</span><span class="p">()</span>
+    <span class="n">myFrame</span> <span class="o">=</span> <span class="n">frame_read</span><span class="o">.</span><span class="n">frame</span>
+    <span class="n">img</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">resize</span><span class="p">(</span><span class="n">myFrame</span><span class="p">,</span> <span class="p">(</span><span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">))</span>
+    <span class="n">track_tags</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="d-to-2d-projection-with-april-tags">
+<h2>3 3D to 2D Projection with April Tags<a class="headerlink" href="#d-to-2d-projection-with-april-tags" title="Permalink to this headline"></a></h2>
+<p>Now it’s your turn to write some code (the spots marked “fill in here” in <code class="docutils literal notranslate"><span class="pre">student_exercise2.py</span></code>). Later when we start having our drones race, we will
+detect waypoints based on the tag location. In particular, we will want our drones to fly some prior known distance <span class="math notranslate nohighlight">\(n\)</span> under the tags of
+to point that we will call <span class="math notranslate nohighlight">\(\alpha\)</span>. Since we know the location of the tag in the image plane and the 3D location of the tag with respect
+to the camera, we should be able to find the location of <span class="math notranslate nohighlight">\(\alpha\)</span> in the 3D camera frame and in the image plane using our rules for 3D to
+2D projection and some basic coordinate transforms.</p>
+<p>If we know the 3D location of <span class="math notranslate nohighlight">\(\alpha\)</span> wrt the camera <span class="math notranslate nohighlight">\(x^{cam}_{\alpha}\)</span> then we can find its location in the image plane <span class="math notranslate nohighlight">\(x^{image}_{\alpha}\)</span>
+using a matrix form expression of the projection rule (Equation (1)):</p>
+<div class="math notranslate nohighlight" id="equation-eq-projection">
+<span class="eqno">(1)<a class="headerlink" href="#equation-eq-projection" title="Permalink to this equation"></a></span>\[x^{image}_{\alpha} = K x^{cam}_{\alpha}\]</div>
+<p><span class="math notranslate nohighlight">\(K\)</span> is called the intrinsic matrix and we will define it as follows where <span class="math notranslate nohighlight">\(f\)</span> is the focal length and <span class="math notranslate nohighlight">\(cx\)</span> and <span class="math notranslate nohighlight">\(cy\)</span> are the center coordinates of the image
+(for our case assume they can be found by simply dividing the image height and width by 2):</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}K=
+\begin{bmatrix}
+f &amp; 0 &amp; cx\\
+0 &amp; f &amp; cy\\
+0 &amp; 0 &amp; 1
+\end{bmatrix}\end{split}\]</div>
+<p>You should notice something is slightly off with Equation (1). In particular, since <span class="math notranslate nohighlight">\(K\)</span> has dimensions <span class="math notranslate nohighlight">\(3 \times 3\)</span> and <span class="math notranslate nohighlight">\(x^{cam}_{\alpha}\)</span> has dimensions <span class="math notranslate nohighlight">\(3 \times 1\)</span>, then we are left with
+<span class="math notranslate nohighlight">\(x^{image}_{\alpha}\)</span> having dimensions <span class="math notranslate nohighlight">\(3 \times 1\)</span> even though we want a 2D coordinate! The reason is we have used something called homogeneous coordinates in Equation (1).
+In short, simply divide <span class="math notranslate nohighlight">\(x^{image}_{\alpha}\)</span> by the last element of <span class="math notranslate nohighlight">\(x^{image}_{\alpha}\)</span> and then the first two terms of <span class="math notranslate nohighlight">\(x^{image}_{\alpha}\)</span> is the 2D image coordinate and the
+last term will be 1 which can be discarded.</p>
+<p>You can find an example video of the tag detector working and showing a line from the center of the apriltag to <span class="math notranslate nohighlight">\(\alpha\)</span> at <a class="reference external" href="https://youtube.com/shorts/ZghN2fguCUk?feature=share">https://youtube.com/shorts/ZghN2fguCUk?feature=share</a>.</p>
+</section>
+<section id="next-time">
+<h2>4 Next Time<a class="headerlink" href="#next-time" title="Permalink to this headline"></a></h2>
+<p>Next week we will wrap up object tracking by making our code more modular and extract information about that tag’s location that we will need for our next series of
+seminars which will be on planning and controls in preparation for the final race! We’ll keep next week’s content on the shorter side to make sure everyone is caught
+up before we start doing planning and controls.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="intro_image_computations_part1.html" class="btn btn-neutral float-left" title="Introduction to Image Computations: Object Tracking Part 1" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="intro_image_computations_part3.html" class="btn btn-neutral float-right" title="Introduction to Image Computations: Object Tracking Part 3" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, MIT-NEET Autonomous Machines.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tello SDK 2.0 User Guide &mdash; 16.633 Autonomous Machines 1.0.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/clipboard.min.js"></script>
+        <script src="_static/copybutton.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Td1 Controller Manual" href="td1_controller.html" />
+    <link rel="prev" title="Tello User Manual" href="tello_user_manual.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> 16.633 Autonomous Machines
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Tello Edu Overview</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="tello_edu_overview.html">Tello Edu Overview</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Exercise 01</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="manually_flying.html">Manually Flying</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Exercise 02</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="installing_python_pycharm.html">Installing Python and PyCharm/VSCode</a></li>
+<li class="toctree-l1"><a class="reference internal" href="programming_sdk_2_0.html">Programming Using the Tello SDK 2.0</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Exercise 03</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="intro_image_computations_part1.html">Introduction to Image Computations: Object Tracking Part 1</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Exercise 04</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="intro_image_computations_part2.html">Introduction to Image Computations: Object Tracking Part 2</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">User Manuals and Specifications</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="tello_edu_specs.html">Tello Edu Specifications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tello_user_manual.html">Tello User Manual</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Tello SDK 2.0 User Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#architecture">Architecture</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#send-command-receive-response">Send Command &amp; Receive Response</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#receive-tello-state">Receive Tello State</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#receive-tello-video-stream">Receive Tello Video Stream</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#tello-command-types-and-results">Tello Command Types and Results</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#tello-commands">Tello Commands</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#control-commands">Control Commands</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#set-commands">Set Commands</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#read-commands">Read Commands</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#tello-state">Tello State</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#data-type-string">Data Type: String</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mid-commands">mid Commands</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#safety-feature">Safety Feature</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#reset-tello-wi-fi">Reset Tello Wi-Fi</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="td1_controller.html">Td1 Controller Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="batteries_charging.html">Batteries/Charging</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">16.633 Autonomous Machines</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Tello SDK 2.0 User Guide</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <span class="target" id="tello-sdk-2-0-user-guide"></span><section id="id1">
+<h1>Tello SDK 2.0 User Guide<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h1>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You can download the unedited <a class="reference download internal" download="" href="_downloads/8e5998d5f13459f3cbc893209f10c027/Tello_SDK_2.0_User_Guide.pdf"><code class="xref download docutils literal notranslate"><span class="pre">Tello</span> <span class="pre">SDK</span> <span class="pre">2.0</span> <span class="pre">User</span> <span class="pre">Guide</span></code></a> by clicking this link.
+This page contains essential information from this guide with several additions/corrections to make this information more usuable for this class.</p>
+</div>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline"></a></h2>
+<p>The Tello SDK connects to the aircraft through a WiFi UDP port, allowing users to control the
+aircraft with text commands. After downloading and installing Python, download the Tello3.py file
+via the link: <a class="reference external" href="https://dl-cdn.ryzerobotics.com/downloads/tello/20180222/Tello3.py">https://dl-cdn.ryzerobotics.com/downloads/tello/20180222/Tello3.py</a></p>
+<ul class="simple">
+<li><p>Tello3.py is a sample program based on Python that establishes a UDP communication port, which can implement simple interaction with Tello, including
+sending SDK instructions to Tello and receiving Tello information. Tello3.py is for reference only and the user can develop more.</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1">#</span>
+<span class="linenos"> 2</span><span class="c1"># Tello Python3 Control Demo </span>
+<span class="linenos"> 3</span><span class="c1">#</span>
+<span class="linenos"> 4</span><span class="c1"># http://www.ryzerobotics.com/</span>
+<span class="linenos"> 5</span><span class="c1">#</span>
+<span class="linenos"> 6</span><span class="c1"># 1/1/2018</span>
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span><span class="kn">import</span> <span class="nn">threading</span> 
+<span class="linenos"> 9</span><span class="kn">import</span> <span class="nn">socket</span>
+<span class="linenos">10</span><span class="kn">import</span> <span class="nn">sys</span>
+<span class="linenos">11</span><span class="kn">import</span> <span class="nn">time</span>
+<span class="linenos">12</span>
+<span class="linenos">13</span>
+<span class="linenos">14</span><span class="n">host</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+<span class="linenos">15</span><span class="n">port</span> <span class="o">=</span> <span class="mi">9000</span>
+<span class="linenos">16</span><span class="n">locaddr</span> <span class="o">=</span> <span class="p">(</span><span class="n">host</span><span class="p">,</span><span class="n">port</span><span class="p">)</span> 
+<span class="linenos">17</span>
+<span class="linenos">18</span>
+<span class="linenos">19</span><span class="c1"># Create a UDP socket</span>
+<span class="linenos">20</span><span class="n">sock</span> <span class="o">=</span> <span class="n">socket</span><span class="o">.</span><span class="n">socket</span><span class="p">(</span><span class="n">socket</span><span class="o">.</span><span class="n">AF_INET</span><span class="p">,</span> <span class="n">socket</span><span class="o">.</span><span class="n">SOCK_DGRAM</span><span class="p">)</span>
+<span class="linenos">21</span>
+<span class="linenos">22</span><span class="n">tello_address</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;192.168.10.1&#39;</span><span class="p">,</span> <span class="mi">8889</span><span class="p">)</span>
+<span class="linenos">23</span>
+<span class="linenos">24</span><span class="n">sock</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="n">locaddr</span><span class="p">)</span>
+<span class="linenos">25</span>
+<span class="linenos">26</span><span class="k">def</span> <span class="nf">recv</span><span class="p">():</span>
+<span class="linenos">27</span>    <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="linenos">28</span>    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span> 
+<span class="linenos">29</span>        <span class="k">try</span><span class="p">:</span>
+<span class="linenos">30</span>            <span class="n">data</span><span class="p">,</span> <span class="n">server</span> <span class="o">=</span> <span class="n">sock</span><span class="o">.</span><span class="n">recvfrom</span><span class="p">(</span><span class="mi">1518</span><span class="p">)</span>
+<span class="linenos">31</span>            <span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">))</span>
+<span class="linenos">32</span>        <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+<span class="linenos">33</span>            <span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Exit . . .</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="linenos">34</span>            <span class="k">break</span>
+<span class="linenos">35</span>
+<span class="linenos">36</span>
+<span class="linenos">37</span><span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;</span><span class="se">\r\n\r\n</span><span class="s1">Tello Python3 Demo.</span><span class="se">\r\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="linenos">38</span>
+<span class="linenos">39</span><span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;Tello: command takeoff land flip forward back left right </span><span class="se">\r\n</span><span class="s1">       up down cw ccw speed speed?</span><span class="se">\r\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="linenos">40</span>
+<span class="linenos">41</span><span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;end -- quit demo.</span><span class="se">\r\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="linenos">42</span>
+<span class="linenos">43</span>
+<span class="linenos">44</span><span class="c1">#recvThread create</span>
+<span class="linenos">45</span><span class="n">recvThread</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">recv</span><span class="p">)</span>
+<span class="linenos">46</span><span class="n">recvThread</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+<span class="linenos">47</span>
+<span class="linenos">48</span><span class="k">while</span> <span class="kc">True</span><span class="p">:</span> 
+<span class="linenos">49</span>
+<span class="linenos">50</span>    <span class="k">try</span><span class="p">:</span>
+<span class="linenos">51</span>        <span class="n">msg</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">);</span>
+<span class="linenos">52</span>
+<span class="linenos">53</span>        <span class="k">if</span> <span class="ow">not</span> <span class="n">msg</span><span class="p">:</span>
+<span class="linenos">54</span>            <span class="k">break</span>  
+<span class="linenos">55</span>
+<span class="linenos">56</span>        <span class="k">if</span> <span class="s1">&#39;end&#39;</span> <span class="ow">in</span> <span class="n">msg</span><span class="p">:</span>
+<span class="linenos">57</span>            <span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;...&#39;</span><span class="p">)</span>
+<span class="linenos">58</span>            <span class="n">sock</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>  
+<span class="linenos">59</span>            <span class="k">break</span>
+<span class="linenos">60</span>
+<span class="linenos">61</span>        <span class="c1"># Send data</span>
+<span class="linenos">62</span>        <span class="n">msg</span> <span class="o">=</span> <span class="n">msg</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> 
+<span class="linenos">63</span>        <span class="n">sent</span> <span class="o">=</span> <span class="n">sock</span><span class="o">.</span><span class="n">sendto</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="n">tello_address</span><span class="p">)</span>
+<span class="linenos">64</span>    <span class="k">except</span> <span class="ne">KeyboardInterrupt</span><span class="p">:</span>
+<span class="linenos">65</span>        <span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1"> . . .</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="linenos">66</span>        <span class="n">sock</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>  
+<span class="linenos">67</span>        <span class="k">break</span>
+<span class="linenos">68</span>
+<span class="linenos">69</span>
+<span class="linenos">70</span>
+<span class="linenos">71</span>
+</pre></div>
+</div>
+</section>
+<section id="architecture">
+<h2>Architecture<a class="headerlink" href="#architecture" title="Permalink to this headline"></a></h2>
+<p>Use Wi-Fi to establish a connection between the Tello and PC, Mac, or mobile device.</p>
+<section id="send-command-receive-response">
+<h3>Send Command &amp; Receive Response<a class="headerlink" href="#send-command-receive-response" title="Permalink to this headline"></a></h3>
+<dl class="field-list simple">
+<dt class="field-odd">Tello IP</dt>
+<dd class="field-odd"><p>192.168.10.1</p>
+</dd>
+<dt class="field-even">UDP PORT</dt>
+<dd class="field-even"><p>8889 ⇔ PC/Mac/Mobile</p>
+</dd>
+<dt class="field-odd">Step 1</dt>
+<dd class="field-odd"><p>Set up a UDP client on the PC, Mac, or mobile device to send and receive messages from the Tello via the same port.</p>
+</dd>
+<dt class="field-even">Step 2</dt>
+<dd class="field-even"><p>Before sending any other commands, send “command” to the Tello via UDP PORT 8889 to initiate SDK mode.</p>
+</dd>
+</dl>
+</section>
+<section id="receive-tello-state">
+<h3>Receive Tello State<a class="headerlink" href="#receive-tello-state" title="Permalink to this headline"></a></h3>
+<dl class="field-list simple">
+<dt class="field-odd">Tello IP</dt>
+<dd class="field-odd"><p>192.168.10.1</p>
+</dd>
+<dt class="field-even">UDP Server</dt>
+<dd class="field-even"><p>0.0.0.0</p>
+</dd>
+<dt class="field-odd">UDP PORT</dt>
+<dd class="field-odd"><p>8890</p>
+</dd>
+<dt class="field-even">Step 3</dt>
+<dd class="field-even"><p>Set up a UDP server on the PC, Mac, or mobile device and check the message from IP 0.0.0.0 via UDP PORT 8890. Steps 1 and 2 must be completed before attempting step 3.
+For more details, refer to the Tello State section.</p>
+</dd>
+</dl>
+</section>
+<section id="receive-tello-video-stream">
+<h3>Receive Tello Video Stream<a class="headerlink" href="#receive-tello-video-stream" title="Permalink to this headline"></a></h3>
+<dl class="field-list simple">
+<dt class="field-odd">Tello IP</dt>
+<dd class="field-odd"><p>192.168.10.1</p>
+</dd>
+<dt class="field-even">UDP Server</dt>
+<dd class="field-even"><p>0.0.0.0</p>
+</dd>
+<dt class="field-odd">UDP PORT</dt>
+<dd class="field-odd"><p>11111</p>
+</dd>
+<dt class="field-even">Step 4</dt>
+<dd class="field-even"><p>Set up a UDP server on the PC, Mac, or mobile device and check the message from IP 0.0.0.0 via UDP PORT 11111.</p>
+</dd>
+<dt class="field-odd">Step 5</dt>
+<dd class="field-odd"><p>Send “streamon” to the Tello via UDP PORT 8889 to start streaming. Steps 1 and 2 must be completed before attempting step 5.</p>
+</dd>
+</dl>
+</section>
+</section>
+<section id="tello-command-types-and-results">
+<h2>Tello Command Types and Results<a class="headerlink" href="#tello-command-types-and-results" title="Permalink to this headline"></a></h2>
+<p>The Tello SDK includes three basic command types.</p>
+<dl class="simple">
+<dt><strong>1) Control Commands (xxx)</strong></dt><dd><ul class="simple">
+<li><p>Returns “ok” if the command was successful.</p></li>
+<li><p>Returns “error” or an informational result code if the command failed</p></li>
+</ul>
+</dd>
+<dt><strong>2) Set Command (xxx a)</strong> to set new sub-parameter values</dt><dd><ul class="simple">
+<li><p>Returns “ok” if the command was successful.</p></li>
+<li><p>Returns “error” or an informational result code if the command failed</p></li>
+</ul>
+</dd>
+</dl>
+</section>
+<section id="tello-commands">
+<h2>Tello Commands<a class="headerlink" href="#tello-commands" title="Permalink to this headline"></a></h2>
+<section id="control-commands">
+<h3>Control Commands<a class="headerlink" href="#control-commands" title="Permalink to this headline"></a></h3>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Command</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Possible Response</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>command</p></td>
+<td><p>Enter SDK Mode.</p></td>
+<td><p>ok/error</p></td>
+</tr>
+<tr class="row-odd"><td><p>takeoff</p></td>
+<td><p>Auto takeoff.</p></td>
+<td><p>ok/error</p></td>
+</tr>
+<tr class="row-even"><td><p>land</p></td>
+<td><p>Auto landing.</p></td>
+<td><p>ok/error</p></td>
+</tr>
+<tr class="row-odd"><td><p>streamon</p></td>
+<td><p>Enable video stream.</p></td>
+<td><p>ok/error</p></td>
+</tr>
+<tr class="row-even"><td><p>streamoff</p></td>
+<td><p>Disable video stream.</p></td>
+<td><p>ok/error</p></td>
+</tr>
+<tr class="row-odd"><td><p>emergency</p></td>
+<td><p>Stop motors immediately</p></td>
+<td><p>ok/error</p></td>
+</tr>
+<tr class="row-even"><td><p>up x</p></td>
+<td><p>Ascend to x cm.</p>
+<p>x = 20 to 500</p>
+</td>
+<td><p>ok/error</p></td>
+</tr>
+<tr class="row-odd"><td><p>down x</p></td>
+<td><p>Descend to x cm.</p>
+<p>x = 20 to 500</p>
+</td>
+<td><p>ok/error</p></td>
+</tr>
+<tr class="row-even"><td><p>left x</p></td>
+<td><p>Fly left for x cm.</p>
+<p>x = 20 to 500</p>
+</td>
+<td><p>ok/error</p></td>
+</tr>
+<tr class="row-odd"><td><p>right x</p></td>
+<td><p>Fly right for x cm.</p>
+<p>x = 20 to 500</p>
+</td>
+<td><p>ok/error</p></td>
+</tr>
+<tr class="row-even"><td><p>forward x</p></td>
+<td><p>Fly forward for x cm.</p>
+<p>x = 20 to 500</p>
+</td>
+<td><p>ok/error</p></td>
+</tr>
+<tr class="row-odd"><td><p>back x</p></td>
+<td><p>Fly backward for x cm.</p>
+<p>x = 20 to 500</p>
+</td>
+<td><p>ok/error</p></td>
+</tr>
+<tr class="row-even"><td><p>cw x</p></td>
+<td><p>Rotate x degrees clockwise.</p>
+<p>x = 1 to 360</p>
+</td>
+<td><p>ok/error</p></td>
+</tr>
+<tr class="row-odd"><td><p>ccw x</p></td>
+<td><p>Rotate x degrees counter-clockwise.</p>
+<p>x = 1 to 360</p>
+</td>
+<td><p>ok/error</p></td>
+</tr>
+<tr class="row-even"><td><p>flip x</p></td>
+<td><p>Flip in x direction.</p>
+<p>x = l  (left direction)</p>
+<p>x = r  (right direction)</p>
+<p>x = f  (forward direction)</p>
+<p>x = b (backward direction)</p>
+</td>
+<td><p>ok/error</p></td>
+</tr>
+<tr class="row-odd"><td><p>go x y z speed</p></td>
+<td><p>Fly to (x, y, z) at speed (cm/s).</p>
+<p>x = -500 to 500</p>
+<p>y = -500 to 500</p>
+<p>z = -500 to 500</p>
+<p>speed = 10 to 100</p>
+<p>Note: the (x, y, z) values cannot be set between</p>
+<p>-20 to 20 simultaneously.</p>
+</td>
+<td><p>ok/error</p></td>
+</tr>
+<tr class="row-even"><td><p>stop</p></td>
+<td><p>Hovers in the air.</p>
+<p>Note: work at any time.</p>
+</td>
+<td><p>ok/error</p></td>
+</tr>
+<tr class="row-odd"><td><p>curve x1 y1 z1 x2 y2 z2 speed</p></td>
+<td><p>Fly on a curve specified by two given coordinates at speed (cm/s).</p>
+<p>If the arc radius is not within a range of 0.5 to 10 meters, Tello will</p>
+<p>respond with an error.</p>
+<p>x1, x2 = -500 to 500</p>
+<p>y1, y2 = -500 to 500</p>
+<p>z1, z2 = -500 to 500</p>
+<p>speed = 10 to 60</p>
+<p>Note: the (x1, y1, z1) and (x2, y2, z2) values cannot be set between</p>
+<p>-20 to 20 simultaneously.</p>
+</td>
+<td><p>ok/error</p></td>
+</tr>
+<tr class="row-even"><td><p>go x y z speed mid</p></td>
+<td><p>Fly to the (x, y, z) coordinates of the Mission Pad at speed (cm/s).</p>
+<p>mid = m1 to m8</p>
+<p>x = -500 to 500</p>
+<p>y = -500 to 500</p>
+<p>z = -500 to 500</p>
+<p>speed = 10 to 100</p>
+<p>Note: the (x, y, z) values cannot be set between</p>
+<p>-20 to 20 simultaneously.</p>
+</td>
+<td><p>ok/error</p></td>
+</tr>
+<tr class="row-odd"><td><p>curve x1 y1 z1 x2 y2 z2 speed mid</p></td>
+<td><p>Fly on a curve specified by two given coordinates of a Mission Pad</p>
+<p>at speed (cm/s). If the arc radius is not within a range of</p>
+<p>0.5 to 10 meters, Tello will respond with an error.</p>
+<p>x1, x2 = -500 to 500</p>
+<p>y1, y2 = -500 to 500</p>
+<p>z1, z2 = -500 to 500</p>
+<p>speed = 10 to 60</p>
+<p>Note: the (x1, y1, z1) and (x2, y2, z2) values cannot be set between</p>
+<p>-20 to 20 simultaneously.</p>
+</td>
+<td><p>ok/error</p></td>
+</tr>
+<tr class="row-even"><td><p>jump x y z speed yaw mid1 mid2</p></td>
+<td><p>Fly to coordinates (x, y, z) on Mission Pad 1, recognize coordinates</p>
+<p>(0, 0, z) on Mission Pad 2, and rotate the yaw value.</p>
+<p>mid = m1 to m8</p>
+<p>x = -500 to 500</p>
+<p>y = -500 to 500</p>
+<p>z = -500 to 500</p>
+<p>speed = 10 to 100</p>
+<p>Note: the (x, y, z) values cannot be set between</p>
+<p>-20 to 20 simultaneously.</p>
+</td>
+<td><p>ok/error</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="set-commands">
+<h3>Set Commands<a class="headerlink" href="#set-commands" title="Permalink to this headline"></a></h3>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Command</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Possible Response</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>speed x</p></td>
+<td><p>Set speed to x cm/s.</p>
+<p>x = 10 to 100</p>
+</td>
+<td><p>ok/error</p></td>
+</tr>
+<tr class="row-odd"><td><p>rc a b c d</p></td>
+<td><p>Set remote controller control via four channels.</p>
+<p>a = left/right (-100 to 100)</p>
+<p>b = forward/backward (-100 to 100)</p>
+<p>c = up/down (-100 to 100)</p>
+<p>d = yaw (-100 to 100)</p>
+</td>
+<td><p>ok/error</p></td>
+</tr>
+<tr class="row-even"><td><p>wifi ssid pass</p></td>
+<td><p>Set Wi-Fi password.</p>
+<p>ssid = updated Wi-Fi name</p>
+<p>pass = updated Wi-Fi password</p>
+</td>
+<td><p>ok/error</p></td>
+</tr>
+<tr class="row-odd"><td><p>mon</p></td>
+<td><p>Enable mission pad detection (both forward and</p>
+<p>downward detection).</p>
+</td>
+<td><p>ok/error</p></td>
+</tr>
+<tr class="row-even"><td><p>moff</p></td>
+<td><p>Disable mission pad detection.</p></td>
+<td><p>ok/error</p></td>
+</tr>
+<tr class="row-odd"><td><p>mdirection x</p></td>
+<td><p>x = 0, 1, or 2</p>
+<p>0 = Enable downward detection only</p>
+<p>1 = Enable forward detection only</p>
+<p>2 = Enable both forward and downward detection</p>
+<p>Notes: Perform “mon” command before</p>
+<p>performing this command. The detection</p>
+<p>frequency is 20 Hz if only the forward or downward</p>
+<p>detection is enabled. If both the forward and</p>
+<p>downward detection are enabled, the</p>
+<p>detection frequency is 10 Hz.</p>
+</td>
+<td><p>ok/error</p></td>
+</tr>
+<tr class="row-even"><td><p>ap ssid pass</p></td>
+<td><p>Set the Tello to station mode and connect to a</p>
+<p>new access point with the access point’s ssid and</p>
+<p>password.</p>
+<p>ssid = updated Wi-Fi name</p>
+<p>pass = updated Wi-Fi password</p>
+</td>
+<td><p>ok/error</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="read-commands">
+<h3>Read Commands<a class="headerlink" href="#read-commands" title="Permalink to this headline"></a></h3>
+<blockquote>
+<div><table class="docutils align-default">
+<colgroup>
+<col style="width: 15%" />
+<col style="width: 55%" />
+<col style="width: 29%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Command</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Possible Response</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>speed?</p></td>
+<td><p>Obtain current speed (cm/s).</p></td>
+<td><p>x = 10 to 100</p></td>
+</tr>
+<tr class="row-odd"><td><p>battery?</p></td>
+<td><p>Obtain current battery percentage.</p></td>
+<td><p>x = 0 to 100</p></td>
+</tr>
+<tr class="row-even"><td><p>time?</p></td>
+<td><p>Obtain current flight time.</p></td>
+<td><p>time</p></td>
+</tr>
+<tr class="row-odd"><td><p>wifi?</p></td>
+<td><p>Obtain Wi-Fi SNR.</p></td>
+<td><p>snr</p></td>
+</tr>
+<tr class="row-even"><td><p>sdk?</p></td>
+<td><p>Obtain the Tello SDK version.</p></td>
+<td><p>sdk version</p></td>
+</tr>
+<tr class="row-odd"><td><p>sn?</p></td>
+<td><p>Obtain the Tello serial number.</p></td>
+<td><p>serial number</p></td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+</section>
+</section>
+<section id="tello-state">
+<h2>Tello State<a class="headerlink" href="#tello-state" title="Permalink to this headline"></a></h2>
+<section id="data-type-string">
+<h3>Data Type: String<a class="headerlink" href="#data-type-string" title="Permalink to this headline"></a></h3>
+<p><strong>Data string received when the mission pad detection feature is enabled</strong>:</p>
+<p>“%d;h:%d;bat:%d;baro:%f;\r\n”</p>
+<p><strong>Data string received when the mission pad detection feature is disabled</strong>:
+“pitch:%d;roll:%d;yaw:%d;vgx:%d;vgy:%d;vgz:%d;templ:%d;temph:%d;tof:%d;h:%d;bat:%d;baro:% .2f; time:%d;agx:%.2f;agy:%.2f;agz:%.2f;\r\n”</p>
+<p><strong>Description</strong></p>
+<dl class="field-list simple">
+<dt class="field-odd">mid</dt>
+<dd class="field-odd"><p>the ID of the Mission Pad detected. If no Mission Pad is detected, a “-1” message will be received instead.</p>
+</dd>
+<dt class="field-even">x</dt>
+<dd class="field-even"><p>the x coordinate detected on the Mission Pad. If there is no Mission Pad, a “0” message will be received instead.</p>
+</dd>
+<dt class="field-odd">y</dt>
+<dd class="field-odd"><p>the y coordinate detected on the Mission Pad. If there is no Mission Pad, a “0” message will be received instead.</p>
+</dd>
+<dt class="field-even">z</dt>
+<dd class="field-even"><p>the z coordinate detected on the Mission Pad. If there is no Mission Pad, a “0” message will be received instead.</p>
+</dd>
+<dt class="field-odd">pitch</dt>
+<dd class="field-odd"><p>the degree of the attitude pitch.</p>
+</dd>
+<dt class="field-even">roll</dt>
+<dd class="field-even"><p>the degree of the attitude roll.</p>
+</dd>
+<dt class="field-odd">yaw</dt>
+<dd class="field-odd"><p>the degree of the attitude yaw.</p>
+</dd>
+<dt class="field-even">vgx</dt>
+<dd class="field-even"><p>the speed of x axis.</p>
+</dd>
+<dt class="field-odd">vgy</dt>
+<dd class="field-odd"><p>the speed of the y axis.</p>
+</dd>
+<dt class="field-even">vgz</dt>
+<dd class="field-even"><p>the speed of the z axis.</p>
+</dd>
+<dt class="field-odd">templ</dt>
+<dd class="field-odd"><p>the lowest temperature in degree Celsius.</p>
+</dd>
+<dt class="field-even">temph</dt>
+<dd class="field-even"><p>the highest temperature in degree Celsius</p>
+</dd>
+<dt class="field-odd">tof</dt>
+<dd class="field-odd"><p>the time of flight distance in cm.</p>
+</dd>
+<dt class="field-even">h</dt>
+<dd class="field-even"><p>the height in cm.</p>
+</dd>
+<dt class="field-odd">bat</dt>
+<dd class="field-odd"><p>the percentage of the current battery level.</p>
+</dd>
+<dt class="field-even">baro</dt>
+<dd class="field-even"><p>the barometer measurement in cm.</p>
+</dd>
+<dt class="field-odd">time</dt>
+<dd class="field-odd"><p>the amount of time the motor has been used.</p>
+</dd>
+<dt class="field-even">agx</dt>
+<dd class="field-even"><p>the acceleration of the x axis.</p>
+</dd>
+<dt class="field-odd">agy</dt>
+<dd class="field-odd"><p>the acceleration of the y axis.</p>
+</dd>
+<dt class="field-even">agz</dt>
+<dd class="field-even"><p>the acceleration of the z axis.</p>
+</dd>
+</dl>
+</section>
+<section id="mid-commands">
+<h3>mid Commands<a class="headerlink" href="#mid-commands" title="Permalink to this headline"></a></h3>
+<p>mid commands are only used with a Mission Pad. mid commands include:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 100%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>mon</p></td>
+</tr>
+<tr class="row-even"><td><p>moff</p></td>
+</tr>
+<tr class="row-odd"><td><p>mdirection x</p></td>
+</tr>
+<tr class="row-even"><td><p>go x y z speed mid</p></td>
+</tr>
+<tr class="row-odd"><td><p>curve x1 y1 z1 x2 y2 z2 speed mid</p></td>
+</tr>
+<tr class="row-even"><td><p>jump x y z speed yaw mid1 mid2</p></td>
+</tr>
+</tbody>
+</table>
+<p>For more details, read the <span class="xref std std-ref">Mission Pad User Guide</span>.</p>
+</section>
+<section id="safety-feature">
+<h3>Safety Feature<a class="headerlink" href="#safety-feature" title="Permalink to this headline"></a></h3>
+<p>If there is no command for 15 seconds, the Tello will land automatically.</p>
+</section>
+</section>
+<section id="reset-tello-wi-fi">
+<h2>Reset Tello Wi-Fi<a class="headerlink" href="#reset-tello-wi-fi" title="Permalink to this headline"></a></h2>
+<p>Make sure the Tello is turned on and press and hold the power button for five seconds. The indicators will turn off and blink yellow slowly. When the Wi-Fi
+SSID and password is reset to the default settings, the indicator blinks yellow quickly. Note that in default there is no password set.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="tello_user_manual.html" class="btn btn-neutral float-left" title="Tello User Manual" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="td1_controller.html" class="btn btn-neutral float-right" title="Td1 Controller Manual" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, MIT-NEET Autonomous Machines.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

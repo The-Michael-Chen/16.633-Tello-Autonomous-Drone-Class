@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Drone Control Part 1 &mdash; 16.633 Autonomous Machines 1.0.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/clipboard.min.js"></script>
+        <script src="_static/copybutton.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Feature Tracking" href="feature_tracking.html" />
+    <link rel="prev" title="Introduction to Image Computations: Object Tracking Part 3" href="intro_image_computations_part3.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> 16.633 Autonomous Machines
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Tello Edu Overview</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="tello_edu_overview.html">Tello Edu Overview</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Exercise 01</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="manually_flying.html">Manually Flying</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Exercise 02</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="installing_python_pycharm.html">Installing Python and PyCharm/VSCode</a></li>
+<li class="toctree-l1"><a class="reference internal" href="programming_sdk_2_0.html">Programming Using the Tello SDK 2.0</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Exercise 03</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="intro_image_computations_part1.html">Introduction to Image Computations: Object Tracking Part 1</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Exercise 04</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="intro_image_computations_part2.html">Introduction to Image Computations: Object Tracking Part 2</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Exercise 05</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="intro_image_computations_part3.html">Introduction to Image Computations: Object Tracking Part 3</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Exercise 06</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Drone Control Part 1</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#introduction">1 Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#p-controller">2 P-Controller</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#provided-code">3 Provided Code</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Exercise 07</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="feature_tracking.html">Feature Tracking</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Exercise 08</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="autonomy_stack_integration.html">Autonomy Stack Integration</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">User Manuals and Specifications</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="tello_edu_specs.html">Tello Edu Specifications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tello_user_manual.html">Tello User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tello_sdk_2_0_user_guide.html">Tello SDK 2.0 User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="td1_controller.html">Td1 Controller Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="batteries_charging.html">Batteries/Charging</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">16.633 Autonomous Machines</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Drone Control Part 1</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="drone-control-part-1">
+<h1>Drone Control Part 1<a class="headerlink" href="#drone-control-part-1" title="Permalink to this headline"></a></h1>
+<dl class="field-list simple">
+<dt class="field-odd">Author</dt>
+<dd class="field-odd"><p>Dominic Maggio</p>
+</dd>
+</dl>
+<section id="introduction">
+<h2>1 Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline"></a></h2>
+<p>As we have discussed before, the full autonomy stack can in general be split into three main groups - perception, planning, and controls.
+So far, we’ve mostly seen perception which lets us make observations about the environment using sensors like a camera. The planning stage
+uses these observations and determines a policy to achieve the goals of the vehicle. The control stage then determines how to carry out the policy.
+Today we will learn how to implement a basic controller for our drone that will allow our drone to follow a moving tag.</p>
+</section>
+<section id="p-controller">
+<h2>2 P-Controller<a class="headerlink" href="#p-controller" title="Permalink to this headline"></a></h2>
+<p>Drone control can get decently complicated and recent research in control theory has shown very impressive capability with aggressive drone control such as
+<a class="reference external" href="https://www.youtube.com/watch?v=XxFZ-VStApo">https://www.youtube.com/watch?v=XxFZ-VStApo</a>. For now, we are going to use a very simple P (proportional gain) controller. Despite it’s simplicity,
+it does a decently effective job of controlling the drone.</p>
+<p>We are going to use 3 1D P-controllers. One for each of the drone’s left-right, up-down, and forward-back motion. A P-controller determines the control
+action <span class="math notranslate nohighlight">\(u\)</span> based on the difference between a target state <span class="math notranslate nohighlight">\(x_{\rm target}\)</span> and an estimated state <span class="math notranslate nohighlight">\(x_{\rm est}\)</span> weighted by some gain <span class="math notranslate nohighlight">\(K_P\)</span> (Equation 1).</p>
+<div class="math notranslate nohighlight">
+\[u = K_P (x_{\rm target} - x_{\rm est})\]</div>
+<p>Our controller can be considered a high level controller because our control action will be a velocity command. The drone will take care of the low level
+control which determines how much torque to use on each propeller to give us our desired velocity.</p>
+<p>For the left-right and up-down controller, our desired state will be to have the target tag be in the center of the image. For the provided code, the error
+in this case will have units of pixels.</p>
+<p>For the forward-back controller, our desired state will be a user supplied distance from the tag. Thus, the error will have units of meters.</p>
+<p>Running the provided code will allow your drone to track a tag even if the tag moves. See <a class="reference external" href="https://www.youtube.com/watch?v=MW2x7jO8_f8&amp;feature=youtu.be">https://www.youtube.com/watch?v=MW2x7jO8_f8&amp;feature=youtu.be</a> for a
+working demo. You will want to play with the gains and try out different target distances. One limitation of the controller is the tag must be in view for the
+controller to work. I implemented a feature where the drone will stop if a tag is not in view. There is definitely room to improve the controller, so feel free to
+make changes as you desire - after all, we will be racing these drones!</p>
+</section>
+<section id="provided-code">
+<h2>3 Provided Code<a class="headerlink" href="#provided-code" title="Permalink to this headline"></a></h2>
+<p>To run the controller, add the following adjustable knobs at the top of your tag tracker script. You will want to test different values for these proportional gains.
+Note you also input the desired tag to track here:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">####### controller params #######</span>
+<span class="n">target_dist</span> <span class="o">=</span> <span class="mf">2.0</span> <span class="c1"># desired distance from tag</span>
+
+<span class="c1"># remember left-right and up-down error is larger</span>
+<span class="c1"># than forward-back error since the first two are</span>
+<span class="c1"># in pixels and not meters!</span>
+<span class="n">P_z</span> <span class="o">=</span> <span class="mi">50</span> <span class="c1"># forward-back gain</span>
+<span class="n">P_x</span> <span class="o">=</span> <span class="mf">0.2</span> <span class="c1"># left-right gain</span>
+<span class="n">P_y</span> <span class="o">=</span> <span class="mf">0.3</span> <span class="c1"># up-down gain</span>
+
+<span class="n">target_tag</span> <span class="o">=</span> <span class="s1">&#39;8&#39;</span> <span class="c1"># tag to target</span>
+
+<span class="c1">###############################</span>
+</pre></div>
+</div>
+<p>Add the following code to the bottom of your script. The code will tell your drone to takeoff and then try to track the target tag. Note this code assumes you
+followed the wrapper spec from last week, so if that is not the case you can either change this code to match your wrapper call or change your wrapper. To land the
+drone, press Ctrl-C. To make the drone stop moving, simply remove the tag from the drone’s view.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_z_control</span><span class="p">(</span><span class="n">target</span><span class="p">,</span> <span class="n">observed</span><span class="p">,</span> <span class="n">gain</span><span class="p">):</span>
+    <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">gain</span> <span class="o">*</span> <span class="p">(</span><span class="n">observed</span> <span class="o">-</span> <span class="n">target</span><span class="p">))</span>
+
+<span class="k">def</span> <span class="nf">get_left_right_control</span><span class="p">(</span><span class="n">target</span><span class="p">,</span> <span class="n">observed</span><span class="p">,</span> <span class="n">gain</span><span class="p">):</span>
+    <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">gain</span> <span class="o">*</span> <span class="p">(</span><span class="n">observed</span> <span class="o">-</span> <span class="n">target</span><span class="p">))</span>
+
+<span class="k">def</span> <span class="nf">get_up_down_control</span><span class="p">(</span><span class="n">target</span><span class="p">,</span> <span class="n">observed</span><span class="p">,</span> <span class="n">gain</span><span class="p">):</span>
+    <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">gain</span> <span class="o">*</span> <span class="o">-</span><span class="p">(</span><span class="n">observed</span> <span class="o">-</span> <span class="n">target</span><span class="p">))</span>
+
+<span class="k">def</span> <span class="nf">send_velocity_command</span><span class="p">(</span><span class="n">left_right_velocity</span><span class="p">,</span> <span class="n">for_back_velocity</span><span class="p">,</span> 
+                          <span class="n">up_down_velocity</span><span class="p">,</span> <span class="n">yaw_velocity</span><span class="p">):</span>
+    <span class="n">tello</span><span class="o">.</span><span class="n">send_rc_control</span><span class="p">(</span><span class="n">left_right_velocity</span><span class="p">,</span> <span class="n">for_back_velocity</span><span class="p">,</span>
+                <span class="n">up_down_velocity</span><span class="p">,</span> <span class="n">yaw_velocity</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">stop_drone</span><span class="p">():</span>
+    <span class="c1"># set all velocity components to 0 to stop drone</span>
+    <span class="n">tello</span><span class="o">.</span><span class="n">send_rc_control</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="c1"># send takeoff command</span>
+<span class="c1"># NOTE THAT CTRL-C SHOULD MAKE YOUR DRONE LAND AND STOP THE PROPS</span>
+<span class="n">tello</span><span class="o">.</span><span class="n">takeoff</span><span class="p">()</span>
+
+<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="c1"># GET THE IMAGE FROM TELLO</span>
+    <span class="n">frame_read</span> <span class="o">=</span> <span class="n">tello</span><span class="o">.</span><span class="n">get_frame_read</span><span class="p">()</span>
+    <span class="n">myFrame</span> <span class="o">=</span> <span class="n">frame_read</span><span class="o">.</span><span class="n">frame</span>
+    <span class="n">img</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">resize</span><span class="p">(</span><span class="n">myFrame</span><span class="p">,</span> <span class="p">(</span><span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">))</span>
+    
+    <span class="c1"># track tags</span>
+    <span class="n">tag_data</span> <span class="o">=</span> <span class="n">track_tags</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">target_point_dist</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">visualize</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+    
+    <span class="c1"># extract tag location and control drone</span>
+    <span class="k">if</span> <span class="n">target_tag</span> <span class="ow">in</span> <span class="n">tag_data</span><span class="p">:</span>
+        <span class="n">z_dist</span> <span class="o">=</span> <span class="n">tag_data</span><span class="p">[</span><span class="n">target_tag</span><span class="p">][</span><span class="s1">&#39;tag&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">pose_t</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+        
+        <span class="c1"># get velocity components</span>
+        <span class="n">forward_vel</span> <span class="o">=</span> <span class="n">get_z_control</span><span class="p">(</span><span class="n">target_dist</span><span class="p">,</span> <span class="n">z_dist</span><span class="p">,</span> <span class="n">gain</span><span class="o">=</span><span class="n">P_z</span><span class="p">)</span>
+        <span class="n">left_right_vel</span> <span class="o">=</span> <span class="n">get_left_right_control</span><span class="p">(</span> 
+            <span class="n">cx</span><span class="p">,</span> <span class="n">tag_data</span><span class="p">[</span><span class="n">target_tag</span><span class="p">][</span><span class="s1">&#39;tag&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">center</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">gain</span><span class="o">=</span><span class="n">P_x</span><span class="p">)</span>
+        <span class="n">up_down_vel</span> <span class="o">=</span> <span class="n">get_up_down_control</span><span class="p">(</span>
+            <span class="n">cy</span><span class="p">,</span> <span class="n">tag_data</span><span class="p">[</span><span class="n">target_tag</span><span class="p">][</span><span class="s1">&#39;tag&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">center</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">gain</span><span class="o">=</span><span class="n">P_y</span><span class="p">)</span>
+        <span class="n">yaw_velocity</span> <span class="o">=</span> <span class="mi">0</span>
+
+        <span class="c1"># send control action to drone</span>
+        <span class="n">send_velocity_command</span><span class="p">(</span><span class="n">left_right_vel</span><span class="p">,</span> <span class="n">forward_vel</span><span class="p">,</span> 
+                          <span class="n">up_down_vel</span><span class="p">,</span> <span class="n">yaw_velocity</span><span class="p">)</span>
+
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># if we don&#39;t see the tag, do the safe thing and stop the drone</span>
+        <span class="n">stop_drone</span><span class="p">()</span>
+    <span class="c1">#time.sleep(.1)</span>
+
+<span class="n">tello</span><span class="o">.</span><span class="n">land</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="intro_image_computations_part3.html" class="btn btn-neutral float-left" title="Introduction to Image Computations: Object Tracking Part 3" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="feature_tracking.html" class="btn btn-neutral float-right" title="Feature Tracking" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, MIT-NEET Autonomous Machines.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

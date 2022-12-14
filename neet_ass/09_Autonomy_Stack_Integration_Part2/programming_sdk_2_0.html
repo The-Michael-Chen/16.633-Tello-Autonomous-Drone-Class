@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Programming Using the Tello SDK 2.0 &mdash; 16.633 Autonomous Machines 1.0.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/clipboard.min.js"></script>
+        <script src="_static/copybutton.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Introduction to Image Computations: Object Tracking Part 1" href="intro_image_computations_part1.html" />
+    <link rel="prev" title="Installing Python and PyCharm/VSCode" href="installing_python_pycharm.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> 16.633 Autonomous Machines
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Tello Edu Overview</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="tello_edu_overview.html">Tello Edu Overview</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Exercise 01</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="manually_flying.html">Manually Flying</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Exercise 02</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="installing_python_pycharm.html">Installing Python and PyCharm/VSCode</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Programming Using the Tello SDK 2.0</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#tello-example-01">1 Tello Example 01</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#programming-for-point-to-point-navigation">2 Programming for Point-to-Point Navigation</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Exercise 03</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="intro_image_computations_part1.html">Introduction to Image Computations: Object Tracking Part 1</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Exercise 04</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="intro_image_computations_part2.html">Introduction to Image Computations: Object Tracking Part 2</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Exercise 05</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="intro_image_computations_part3.html">Introduction to Image Computations: Object Tracking Part 3</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Exercise 06</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="drone_control_part1.html">Drone Control Part 1</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Exercise 07</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="feature_tracking.html">Feature Tracking</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Exercise 08</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="autonomy_stack_integration.html">Autonomy Stack Integration</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Exercise 09</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="autonomy_stack_integration_part2.html">Autonomy Stack Integration Part 2</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">User Manuals and Specifications</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="tello_edu_specs.html">Tello Edu Specifications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tello_user_manual.html">Tello User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tello_sdk_2_0_user_guide.html">Tello SDK 2.0 User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="td1_controller.html">Td1 Controller Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="batteries_charging.html">Batteries/Charging</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">16.633 Autonomous Machines</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Programming Using the Tello SDK 2.0</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="programming-using-the-tello-sdk-2-0">
+<h1>Programming Using the Tello SDK 2.0<a class="headerlink" href="#programming-using-the-tello-sdk-2-0" title="Permalink to this headline"></a></h1>
+<p>For this exercise you’ll learn how to write a program in Python using commands in the <a class="reference download internal" download="" href="_downloads/8e5998d5f13459f3cbc893209f10c027/Tello_SDK_2.0_User_Guide.pdf"><code class="xref download docutils literal notranslate"><span class="pre">Tello</span> <span class="pre">SDK</span> <span class="pre">2.0</span> <span class="pre">User</span> <span class="pre">Guide</span></code></a> .
+You’ll begin with existing code <code class="docutils literal notranslate"><span class="pre">Tello_Example01.py</span></code>, and once you have a grasp of how this code is structured, take a look at the
+User Guide to learn more about the other SDK commands. After looking through the User Guide, you’ll be in a good position to make modifications and create your own code.</p>
+<section id="tello-example-01">
+<h2>1 Tello Example 01<a class="headerlink" href="#tello-example-01" title="Permalink to this headline"></a></h2>
+<p>First open PyCharm or VSCode and create a folder on your computer to place the program <code class="docutils literal notranslate"><span class="pre">Tello_Example01.py</span></code>. Next, copy the code below and place it inside of your
+folder.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#############################</span>
+<span class="c1"># Tello EDU Sample Program 01 </span>
+<span class="c1">#</span>
+<span class="c1"># MIT NEET-AM Autonomous Machines</span>
+<span class="c1">#</span>
+<span class="c1"># 08/12/2021</span>
+<span class="c1">#############################</span>
+
+<span class="kn">import</span> <span class="nn">threading</span>
+<span class="kn">import</span> <span class="nn">socket</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">time</span>
+
+<span class="n">host</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+<span class="n">port</span> <span class="o">=</span> <span class="mi">9000</span>
+<span class="n">locaddr</span> <span class="o">=</span> <span class="p">(</span><span class="n">host</span><span class="p">,</span> <span class="n">port</span><span class="p">)</span>
+
+<span class="c1"># Create a UDP socket</span>
+<span class="n">sock</span> <span class="o">=</span> <span class="n">socket</span><span class="o">.</span><span class="n">socket</span><span class="p">(</span><span class="n">socket</span><span class="o">.</span><span class="n">AF_INET</span><span class="p">,</span> <span class="n">socket</span><span class="o">.</span><span class="n">SOCK_DGRAM</span><span class="p">)</span>
+
+<span class="n">tello_address</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;192.168.10.1&#39;</span><span class="p">,</span> <span class="mi">8889</span><span class="p">)</span>
+
+<span class="n">sock</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="n">locaddr</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">recv</span><span class="p">():</span>
+    <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">data</span><span class="p">,</span> <span class="n">server</span> <span class="o">=</span> <span class="n">sock</span><span class="o">.</span><span class="n">recvfrom</span><span class="p">(</span><span class="mi">1518</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">))</span>
+        <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Exit . . .</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+            <span class="k">break</span>
+
+<span class="n">recvThread</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">recv</span><span class="p">)</span>
+<span class="n">recvThread</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;command&quot;</span><span class="p">;</span>
+    <span class="c1"># Send data</span>
+    <span class="n">msg</span> <span class="o">=</span> <span class="n">msg</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span>
+    <span class="n">sent</span> <span class="o">=</span> <span class="n">sock</span><span class="o">.</span><span class="n">sendto</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="n">tello_address</span><span class="p">)</span>
+
+    <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;takeoff&quot;</span><span class="p">;</span>
+    <span class="c1"># Send data</span>
+    <span class="n">msg</span> <span class="o">=</span> <span class="n">msg</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span>
+    <span class="n">sent</span> <span class="o">=</span> <span class="n">sock</span><span class="o">.</span><span class="n">sendto</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="n">tello_address</span><span class="p">)</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+
+    <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;down 20&quot;</span><span class="p">;</span>
+    <span class="c1"># Send data</span>
+    <span class="n">msg</span> <span class="o">=</span> <span class="n">msg</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span>
+    <span class="n">sent</span> <span class="o">=</span> <span class="n">sock</span><span class="o">.</span><span class="n">sendto</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="n">tello_address</span><span class="p">)</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+
+    <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;up 20&quot;</span><span class="p">;</span>
+    <span class="c1"># Send data</span>
+    <span class="n">msg</span> <span class="o">=</span> <span class="n">msg</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span>
+    <span class="n">sent</span> <span class="o">=</span> <span class="n">sock</span><span class="o">.</span><span class="n">sendto</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="n">tello_address</span><span class="p">)</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+
+    <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;flip l&quot;</span><span class="p">;</span>
+    <span class="c1"># Send data</span>
+    <span class="n">msg</span> <span class="o">=</span> <span class="n">msg</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span>
+    <span class="n">sent</span> <span class="o">=</span> <span class="n">sock</span><span class="o">.</span><span class="n">sendto</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="n">tello_address</span><span class="p">)</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+
+    <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;flip r&quot;</span><span class="p">;</span>
+    <span class="c1"># Send data</span>
+    <span class="n">msg</span> <span class="o">=</span> <span class="n">msg</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span>
+    <span class="n">sent</span> <span class="o">=</span> <span class="n">sock</span><span class="o">.</span><span class="n">sendto</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="n">tello_address</span><span class="p">)</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+
+    <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;cw 90&quot;</span><span class="p">;</span>
+    <span class="c1"># Send data</span>
+    <span class="n">msg</span> <span class="o">=</span> <span class="n">msg</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span>
+    <span class="n">sent</span> <span class="o">=</span> <span class="n">sock</span><span class="o">.</span><span class="n">sendto</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="n">tello_address</span><span class="p">)</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+
+    <span class="n">msgbat</span> <span class="o">=</span> <span class="s2">&quot;battery?&quot;</span><span class="p">;</span>
+    <span class="c1"># Send data</span>
+    <span class="n">msgbat</span> <span class="o">=</span> <span class="n">msgbat</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span>
+    <span class="n">sent</span> <span class="o">=</span> <span class="n">sock</span><span class="o">.</span><span class="n">sendto</span><span class="p">(</span><span class="n">msgbat</span><span class="p">,</span> <span class="n">tello_address</span><span class="p">)</span>
+
+    <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;land&quot;</span><span class="p">;</span>
+    <span class="c1"># Send data</span>
+    <span class="n">msg</span> <span class="o">=</span> <span class="n">msg</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span>
+    <span class="n">sent</span> <span class="o">=</span> <span class="n">sock</span><span class="o">.</span><span class="n">sendto</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="n">tello_address</span><span class="p">)</span>
+
+    <span class="c1"># close the socket</span>
+    <span class="n">sock</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+<span class="k">except</span> <span class="ne">KeyboardInterrupt</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1"> . . .</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="n">sock</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>After you’ve downloaded the progam <code class="docutils literal notranslate"><span class="pre">Tello_Example01.py</span></code> to your computer, follow the steps given below:</p>
+<dl class="field-list simple">
+<dt class="field-odd">Step 1</dt>
+<dd class="field-odd"><p>Turn on your Tello and wait until it starts to flash yellow.</p>
+</dd>
+<dt class="field-even">Step 2</dt>
+<dd class="field-even"><p>On your computer, look under Network and find your Tello’s WiFi ID. Select your Tello. It may take a minute or two to connect, so be patient.</p>
+</dd>
+<dt class="field-odd">Step 3</dt>
+<dd class="field-odd"><p>Within PyCharm, look under the Run menu and select Run. Select the program <code class="docutils literal notranslate"><span class="pre">Tello_Example01.py</span></code> to run. If all works well, your Tello should execute the commands given in the code.</p>
+</dd>
+</dl>
+</section>
+<section id="programming-for-point-to-point-navigation">
+<h2>2 Programming for Point-to-Point Navigation<a class="headerlink" href="#programming-for-point-to-point-navigation" title="Permalink to this headline"></a></h2>
+<a class="reference internal image-reference" href="_images/Point-to-Point-Exercise01.png"><img alt="Installing Python" class="align-center" src="_images/Point-to-Point-Exercise01.png" style="width: 500px; height: 243px;" /></a>
+<p>Including the origin (0, 0, 0), the image above has 10 points, where the following 9 points all lie at the same height of 100 cm:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 36%" />
+<col style="width: 30%" />
+<col style="width: 34%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>(-100, -100, 100)</p></td>
+<td><p>(-100, 0, 100)</p></td>
+<td><p>(-100, 100, 100)</p></td>
+</tr>
+<tr class="row-even"><td><p>(0, -100, 100)</p></td>
+<td><p>(0, 0, 100)</p></td>
+<td><p>(0, 100, 100)</p></td>
+</tr>
+<tr class="row-odd"><td><p>(100, -100, 100)</p></td>
+<td><p>(100, 0, 100)</p></td>
+<td><p>(100, 100, 100)</p></td>
+</tr>
+</tbody>
+</table>
+<p>Program the Tello to achieve the following point-to-point trajectory:</p>
+<dl class="field-list simple">
+<dt class="field-odd">Step 1</dt>
+<dd class="field-odd"><p>start at origin (0, 0, 0) with the Tello’s front (camera) oriented along the positive x-axis</p>
+</dd>
+<dt class="field-even">Step 2</dt>
+<dd class="field-even"><p>fly up to (0, 0, 100)</p>
+</dd>
+<dt class="field-odd">Step 3</dt>
+<dd class="field-odd"><p>rotate ccw 180 degrees</p>
+</dd>
+<dt class="field-even">Step 4</dt>
+<dd class="field-even"><p>fly forward to (-100, 0, 100)</p>
+</dd>
+<dt class="field-odd">Step 5</dt>
+<dd class="field-odd"><p>rotate ccw 135 degrees</p>
+</dd>
+<dt class="field-even">Step 6</dt>
+<dd class="field-even"><p>fly forward to (0, -100, 100)</p>
+</dd>
+<dt class="field-odd">Step 7</dt>
+<dd class="field-odd"><p>rotate ccw 90 degrees</p>
+</dd>
+<dt class="field-even">Step 8</dt>
+<dd class="field-even"><p>fly forward to (100, 0, 100)</p>
+</dd>
+<dt class="field-odd">Step 9</dt>
+<dd class="field-odd"><p>rotate ccw 90 degrees</p>
+</dd>
+<dt class="field-even">Step 10</dt>
+<dd class="field-even"><p>fly forward to (0, 100, 100)</p>
+</dd>
+<dt class="field-odd">Step 11</dt>
+<dd class="field-odd"><p>rotate ccw 45 degrees</p>
+</dd>
+<dt class="field-even">Step 12</dt>
+<dd class="field-even"><p>fly forward to (-100, 100, 100)</p>
+</dd>
+<dt class="field-odd">Step 13</dt>
+<dd class="field-odd"><p>fly left to (-100, -100, 100)</p>
+</dd>
+<dt class="field-even">Step 14</dt>
+<dd class="field-even"><p>fly backward to (100, -100, 100)</p>
+</dd>
+<dt class="field-odd">Step 15</dt>
+<dd class="field-odd"><p>fly right to (100, 100, 100)</p>
+</dd>
+<dt class="field-even">Step 16</dt>
+<dd class="field-even"><p>rotate ccw 45 degrees</p>
+</dd>
+<dt class="field-odd">Step 17</dt>
+<dd class="field-odd"><p>fly forward to (0, 0, 100)</p>
+</dd>
+<dt class="field-even">Step 18</dt>
+<dd class="field-even"><p>rotate cw 225 degrees</p>
+</dd>
+<dt class="field-odd">Step 19</dt>
+<dd class="field-odd"><p>land to (0, 0, 0)</p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>All of the Tello control commands for point-to-point flying are located on this page <a class="reference internal" href="tello_sdk_2_0_user_guide.html"><span class="doc">Tello SDK 2.0 User Guide</span></a>.</p>
+</div>
+<ol class="arabic simple">
+<li><p>After performing the steps given above, does your Tello land back at the origin with the same takeoff orientation?</p></li>
+<li><p>Roughly, how accurate is the landing location from where it started?</p></li>
+<li><p>Roughly, how accurate is the landing orientation from its initial orientation?</p></li>
+<li><p>If the accuracy is way off for either the location or orientation, speculate on what may have gone wrong, or how you could correct any descrepancies in your code.</p></li>
+</ol>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="installing_python_pycharm.html" class="btn btn-neutral float-left" title="Installing Python and PyCharm/VSCode" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="intro_image_computations_part1.html" class="btn btn-neutral float-right" title="Introduction to Image Computations: Object Tracking Part 1" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, MIT-NEET Autonomous Machines.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
