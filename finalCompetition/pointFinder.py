@@ -285,11 +285,11 @@ while True:
         x_pos = tag_data[target_tag]["target"]["pixel_coords"][0]
         y_pos = tag_data[target_tag]["target"]["pixel_coords"][1]
         left_right_vel = get_left_right_control(cx, x_pos, gain = P_x)
-        if abs(x_pos - cx) > 35: 
-            forward_vel = forward_vel = get_z_control(target_dist, z_dist, gain=P_z*0.5)
+        if abs(x_pos - cx) > 40: 
+            forward_vel = forward_vel = get_z_control(target_dist, z_dist, gain=P_z*0.6)
             up_down_vel = get_up_down_control(cy, y_pos, gain = P_y*0.5)
         else:
-            forward_vel = get_z_control(target_dist, z_dist, gain=P_z*1.5)
+            forward_vel = get_z_control(target_dist, z_dist, gain=P_z*1.8)
             up_down_vel = get_up_down_control(cy, y_pos, gain = P_y)
         # left_right_vel = get_left_right_control( 
         #     cx, tag_data[target_tag]['tag'].center[0], gain=P_x)
@@ -321,8 +321,8 @@ while True:
                 tracking_flow = False
                 tag_ind += 1
                 if tag_ind == 1 or tag_ind == 3:
-                    tello.move_up(20)
-                    tello.move_forward(20)
+                    tello.move_forward(50)
+                    tello.move_up(30)
                 if tag_ind == 2 or tag_ind == 4:
                     print("turn counter")
                     tello.move_forward(165)
