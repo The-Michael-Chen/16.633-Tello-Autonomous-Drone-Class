@@ -1,0 +1,5 @@
+djitellopy==2.4.0
+matplotlib==3.5.1
+numpy==1.22.0
+opencv_python==4.7.0.72
+pupil_apriltags==1.0.4.post7

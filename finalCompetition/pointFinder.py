@@ -2,7 +2,7 @@ from djitellopy import Tello
 import cv2
 import time
 import numpy as np
-
+import numpy.typing as npt
 import cv2
 from matplotlib import pyplot as plt
 from pupil_apriltags import Detector
@@ -51,8 +51,8 @@ P_z = 11
 P_x = 0.12 # left-right gain
 P_y = 0.27 # up-down gain
 
-target_tag = "7" # tag to target
-target_tags = ["7", "0", "19", "17"]
+target_tag = "0" # tag to target
+target_tags = ["0", "0", "0", "0"]
 tag_ind = 0
 
 
@@ -67,7 +67,7 @@ at_detector = Detector(families='tag36h11',
                    decode_sharpening=0.25,
                    debug=0)
 
-fly = True
+fly = False
 
 # feature tracking 
 # Parameters for lucas kanade optical flow
@@ -262,7 +262,7 @@ def stop_drone():
 # NOTE THAT CTRL-C SHOULD MAKE YOUR DRONE LAND AND STOP THE PROPS
 if fly:
     tello.takeoff()
-    tello.move_up(165)
+    tello.move_up(20)
 
 while True:
     # GET THE IMAGE FROM TELLO
@@ -298,6 +298,7 @@ while True:
         yaw_velocity = 0
 
         # send control action to drone
+        print(left_right_vel, forward_vel, up_down_vel, yaw_velocity)
         if fly: 
             send_velocity_command(left_right_vel, forward_vel, 
                           up_down_vel, yaw_velocity)
@@ -334,6 +335,7 @@ while True:
                     ccw = True
                 if tag_ind == 4:
                     tag_ind = 0
+                print(left_right_vel, forward_vel, up_down_vel, yaw_velocity)
             else:
                 tracking_flow = True # tracking the flow point 
             if fly: 
@@ -342,7 +344,7 @@ while True:
         else: # 
             if has_checked_tags:
                 scan_target()
-                
+        
         
     #time.sleep(.1)
 
