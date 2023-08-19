@@ -4,12 +4,14 @@ This class uses Tello drones to autonomously navigate around a track. The track 
 ## Class Package installation instructions:
 1. pip install virtualenv
 2. create a folder for your class projects
-3. python<version> -m venv <virtual-environment-name>
-4. 
+3. python<version> -m venv <virtual-environment-name> (python version 3.8.5)
+4. git clone this repository follow instructions on the github page
+5. pip install -r requirements.txt
 
 ## ROS Setup Process: 
-
-
+1. Download docker 
+2. Visit this link https://github.com/Tiryoh/docker-ros-desktop-vnc and follow the instructions to pull the docker image
+3. Visit this link https://github.com/clydemcqueen/tello_ros and follow the instructions under install "tello_ros". To run the simulation, click on "tello_gazebo" and follow the instructions there. 
 
 ## Issue Log:
 1. Could not download April Tags plugins:
