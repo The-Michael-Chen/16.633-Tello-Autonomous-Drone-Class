@@ -11,7 +11,15 @@ This class uses Tello drones to autonomously navigate around a track. The track 
 ## ROS Setup Process: 
 1. Download docker 
 2. Visit this link https://github.com/Tiryoh/docker-ros-desktop-vnc and follow the instructions to pull the docker image
-3. Visit this link https://github.com/clydemcqueen/tello_ros and follow the instructions under install "tello_ros". To run the simulation, click on "tello_gazebo" and follow the instructions there. 
+3. open terminal and navigate to the directory of your project and cloned directory
+4. Run the following command to create a docker container:
+`docker run -it -p 6080:80 -v $(pwd):/home/ubuntu/Desktop/<project_nam> --name <project_name> tiryoh/ros2-desktop-vnc:foxy`
+5. open the docker container in your browser by clicking the port in docker desktop
+6. When inside the docker container, open a terminal and navigate to the project directory in desktop
+7. navigate to the tello_ros_ws and run `source install/setup.bash`
+8. run `colcon build --symlink install`
+9. Visit this link https://github.com/clydemcqueen/tello_ros and follow the instructions under install "tello_ros". To run the simulation, click on "tello_gazebo" and follow the instructions there. 
+
 
 ## Issue Log:
 1. Could not download April Tags plugins:
